@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم — برنامج تأسيس الإنجليزية</title>
+<style>
+:root {
+  --primary: #1a5f7a;
+  --primary-light: #2d8ab0;
+  --primary-dark: #0d3d52;
+  --secondary: #f4a523;
+  --accent: #e8f4fd;
+  --success: #2ecc71;
+  --warning: #f39c12;
+  --danger: #e74c3c;
+  --info: #3498db;
+  --group1: #6c5ce7;
+  --group1-light: #a29bfe;
+  --group2: #00b894;
+  --group2-light: #55efc4;
+  --bg: #f0f6fa;
+  --card: #ffffff;
+  --text: #1a2733;
+  --text-muted: #5a7a8a;
+  --border: #d0e8f5;
+  --nav-h: 64px;
+  --radius: 14px;
+  --shadow: 0 2px 16px rgba(26,95,122,0.09);
+  --shadow-lg: 0 6px 32px rgba(26,95,122,0.14);
+}
+[data-theme="dark"] {
+  --bg: #0d1f2d; --card: #15293a; --text: #e8f4fd;
+  --text-muted: #90b8cc; --border: #1e3a4f; --accent: #1a3448;
+  --shadow: 0 2px 16px rgba(0,0,0,0.35); --shadow-lg: 0 6px 32px rgba(0,0,0,0.5);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;line-height:1.6;}
+
+nav{position:sticky;top:0;z-index:1000;background:var(--card);border-bottom:2px solid var(--border);box-shadow:var(--shadow);height:var(--nav-h);display:flex;align-items:center;padding:0 20px;gap:10px;}
+.nav-brand{font-size:1rem;font-weight:800;color:var(--primary);white-space:nowrap;display:flex;align-items:center;gap:7px;}
+.nav-tabs{display:flex;gap:4px;flex:1;overflow-x:auto;scrollbar-width:none;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.nav-tab{text-decoration:none;color:var(--text-muted);font-size:.85rem;padding:7px 14px;border-radius:9px;white-space:nowrap;cursor:pointer;border:none;background:transparent;transition:background .2s,color .2s;font-family:inherit;font-weight:600;}
+.nav-tab:hover,.nav-tab.active{background:var(--accent);color:var(--primary);font-weight:800;}
+.nav-actions{display:flex;gap:7px;}
+.btn-icon{background:var(--accent);border:none;border-radius:9px;padding:7px 11px;cursor:pointer;color:var(--primary);font-size:.95rem;transition:background .2s;}
+.btn-icon:hover{background:var(--border);}
+
+.page{display:none;max-width:1140px;margin:0 auto;padding:28px 18px 60px;}
+.page.active{display:block;}
+
+.sec-head{margin-bottom:22px;}
+.sec-label{display:inline-block;background:var(--accent);color:var(--primary);font-size:.75rem;font-weight:700;padding:3px 12px;border-radius:20px;margin-bottom:7px;letter-spacing:.04em;text-transform:uppercase;}
+.sec-head h2{font-size:1.7rem;font-weight:800;color:var(--primary);}
+.divider{height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:2px;width:50px;margin-top:8px;}
+
+.group-banner{display:flex;align-items:center;gap:14px;padding:22px 20px;border-radius:var(--radius);margin-bottom:20px;color:#fff;}
+.group-banner.g1{background:linear-gradient(135deg,var(--group1),var(--group1-light));}
+.group-banner.g2{background:linear-gradient(135deg,var(--group2),var(--group2-light));}
+.group-banner h3{color:#fff;font-size:1.25rem;margin-bottom:3px;}
+.group-banner p{color:rgba(255,255,255,.82);font-size:.85rem;margin:0;}
+.meta-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.mbadge{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:7px;padding:3px 12px;font-size:.78rem;font-weight:700;color:#fff;}
+
+.week-hd{background:var(--accent);border-radius:9px;padding:11px 16px;margin:18px 0 10px;font-weight:800;color:var(--primary);font-size:.9rem;border-right:4px solid var(--primary);cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;transition:background .2s;}
+.week-hd:hover{background:var(--border);}
+.week-hd .warr{transition:transform .3s;display:inline-block;}
+.week-hd.open .warr{transform:rotate(90deg);}
+.week-body{display:none;}
+.week-body.open{display:block;}
+
+.lesson-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);}
+.lc-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:background .2s;user-select:none;}
+.lc-head:hover{background:var(--accent);}
+.lc-num{width:40px;height:40px;min-width:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;color:#fff;}
+.lc-num.g1c{background:var(--group1);}
+.lc-num.g2c{background:var(--group2);}
+.lc-info{flex:1;}
+.lc-title{font-weight:800;font-size:.95rem;}
+.lc-sub{font-size:.78rem;color:var(--text-muted);}
+.lc-arrow{color:var(--text-muted);font-size:1rem;transition:transform .3s;display:inline-block;}
+.lc-arrow.open{transform:rotate(90deg);}
+.lc-body{display:none;padding:4px 18px 18px;}
+.lc-body.open{display:block;animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+.lc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:12px;}
+.lc-sec{background:var(--accent);border-radius:9px;padding:13px;border:1px solid var(--border);}
+.lc-sec h5{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--primary);margin-bottom:7px;font-weight:700;}
+.lc-sec ul{padding-right:16px;}
+.lc-sec li{font-size:.84rem;color:var(--text-muted);margin-bottom:3px;}
+.lc-sec p{font-size:.84rem;color:var(--text-muted);margin:0;}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+.tag{background:var(--card);color:var(--primary);border:1px solid var(--border);border-radius:5px;padding:2px 8px;font-size:.75rem;font-weight:600;}
+.outcome-row{margin-top:12px;padding:11px 13px;background:rgba(46,204,113,.07);border-radius:9px;border:1px solid rgba(46,204,113,.2);}
+.outcome-row strong{font-size:.78rem;color:var(--success);display:block;margin-bottom:5px;}
+.otag{display:inline-block;background:var(--success);color:#fff;border-radius:5px;padding:2px 9px;font-size:.74rem;font-weight:700;margin:2px 2px 0 0;}
+
+/* STUDENT MANAGEMENT */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px;}
+.stat-card{background:var(--card);border-radius:var(--radius);padding:20px 18px;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:4px;transition:transform .2s;}
+.stat-card:hover{transform:translateY(-2px);}
+.stat-card .st-val{font-size:2rem;font-weight:900;}
+.stat-card .st-lbl{font-size:.8rem;color:var(--text-muted);font-weight:600;}
+.stat-card.s-total .st-val{color:var(--primary);}
+.stat-card.s-paid .st-val{color:var(--success);}
+.stat-card.s-unpaid .st-val{color:var(--danger);}
+.stat-card.s-att .st-val{color:var(--warning);}
+
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;align-items:center;}
+.tb-search{flex:1;min-width:180px;padding:9px 14px;border:2px solid var(--border);border-radius:10px;font-size:.9rem;background:var(--card);color:var(--text);font-family:inherit;outline:none;transition:border .2s;}
+.tb-search:focus{border-color:var(--primary);}
+.filter-btns{display:flex;gap:6px;flex-wrap:wrap;}
+.fbtn{padding:7px 14px;border-radius:9px;border:2px solid var(--border);background:var(--card);color:var(--text-muted);font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit;}
+.fbtn.active{background:var(--primary);border-color:var(--primary);color:#fff;}
+.act-btns{display:flex;gap:7px;flex-wrap:wrap;}
+.btn{padding:8px 16px;border-radius:9px;border:none;font-size:.84rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s;font-family:inherit;}
+.btn-primary{background:var(--primary);color:#fff;}
+.btn-primary:hover{background:var(--primary-dark);}
+.btn-success{background:var(--success);color:#fff;}
+.btn-success:hover{filter:brightness(.9);}
+.btn-warning{background:var(--warning);color:#fff;}
+.btn-warning:hover{filter:brightness(.9);}
+.btn-danger{background:var(--danger);color:#fff;}
+.btn-danger:hover{filter:brightness(.9);}
+.btn-secondary{background:var(--accent);color:var(--primary);border:1px solid var(--border);}
+.btn-secondary:hover{background:var(--border);}
+
+.tbl-wrap{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;}
+.tbl-scroll{overflow-x:auto;max-height:calc(100vh - 340px);overflow-y:auto;}
+table{width:100%;border-collapse:collapse;min-width:600px;}
+thead{position:sticky;top:0;z-index:10;}
+thead tr{background:var(--primary);}
+th{padding:11px 14px;text-align:right;font-size:.82rem;font-weight:700;color:#fff;white-space:nowrap;border-left:1px solid rgba(255,255,255,.1);}
+th:first-child{border-left:none;}
+td{padding:9px 14px;font-size:.84rem;border-bottom:1px solid var(--border);vertical-align:middle;}
+tbody tr:hover td{background:var(--accent);}
+tbody tr:last-child td{border-bottom:none;}
+.row-num{color:var(--text-muted);font-size:.78rem;text-align:center;width:36px;}
+
+.cell-name-input{border:none;background:transparent;font-size:.84rem;font-weight:700;color:var(--text);font-family:inherit;width:100%;outline:none;cursor:pointer;min-width:120px;}
+.cell-name-input:focus{background:var(--accent);border-radius:5px;padding:2px 6px;}
+
+select.csel{border:1px solid var(--border);background:var(--card);border-radius:7px;padding:5px 8px;font-size:.8rem;font-family:inherit;color:var(--text);outline:none;cursor:pointer;transition:border .2s;width:100%;min-width:100px;}
+select.csel:focus{border-color:var(--primary);}
+.csel.att-p{background:rgba(46,204,113,.12);color:#1a7a4a;border-color:rgba(46,204,113,.4);}
+.csel.att-a{background:rgba(231,76,60,.1);color:#c0392b;border-color:rgba(231,76,60,.3);}
+.csel.att-l{background:rgba(243,156,18,.1);color:#b7760d;border-color:rgba(243,156,18,.3);}
+.csel.ev-ex{background:rgba(46,204,113,.12);color:#1a7a4a;border-color:rgba(46,204,113,.4);}
+.csel.ev-vg{background:rgba(52,152,219,.12);color:#1a5fa0;border-color:rgba(52,152,219,.35);}
+.csel.ev-go{background:rgba(26,95,122,.1);color:var(--primary);border-color:rgba(26,95,122,.3);}
+.csel.ev-ac{background:rgba(243,156,18,.1);color:#b7760d;border-color:rgba(243,156,18,.3);}
+.csel.ev-wk{background:rgba(231,76,60,.1);color:#c0392b;border-color:rgba(231,76,60,.3);}
+.csel.fee-pd{background:rgba(46,204,113,.12);color:#1a7a4a;border-color:rgba(46,204,113,.4);}
+.csel.fee-pp{background:rgba(243,156,18,.1);color:#b7760d;border-color:rgba(243,156,18,.3);}
+.csel.fee-up{background:rgba(231,76,60,.1);color:#c0392b;border-color:rgba(231,76,60,.3);}
+
+.cell-actions{display:flex;justify-content:center;gap:5px;}
+.del-btn{background:none;border:none;cursor:pointer;color:var(--danger);font-size:.95rem;padding:4px 7px;border-radius:6px;transition:background .2s;}
+.del-btn:hover{background:rgba(231,76,60,.1);}
+.custom-cell-input{border:none;background:transparent;font-size:.82rem;color:var(--text);font-family:inherit;width:100%;outline:none;min-width:80px;}
+.custom-cell-input:focus{background:var(--accent);border-radius:5px;padding:2px 5px;}
+.th-inner{display:flex;align-items:center;gap:6px;justify-content:space-between;}
+.del-col-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.55);font-size:.72rem;padding:2px 5px;border-radius:4px;transition:color .2s;flex-shrink:0;}
+.del-col-btn:hover{color:#fff;background:rgba(255,255,255,.15);}
+.empty-msg td{text-align:center;color:var(--text-muted);padding:50px;font-size:.9rem;}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border-radius:var(--radius);padding:28px;width:100%;max-width:420px;box-shadow:var(--shadow-lg);animation:fadeIn .2s ease;}
+.modal h3{margin-bottom:16px;color:var(--primary);font-size:1.1rem;}
+.modal label{font-size:.82rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;}
+.modal input,.modal select{width:100%;padding:9px 13px;border:2px solid var(--border);border-radius:9px;font-size:.9rem;background:var(--bg);color:var(--text);font-family:inherit;outline:none;margin-bottom:12px;transition:border .2s;}
+.modal input:focus,.modal select:focus{border-color:var(--primary);}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:4px;}
+
+.grp-badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:.75rem;font-weight:700;white-space:nowrap;}
+.grp-badge.g1{background:rgba(108,92,231,.15);color:var(--group1);}
+.grp-badge.g2{background:rgba(0,184,148,.15);color:var(--group2);}
+
+@media(max-width:640px){
+  .page{padding:18px 10px 50px;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  nav{padding:0 10px;}
+  .nav-brand{font-size:.85rem;}
+  .group-banner{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">📚 تأسيس الإنجليزية</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('p-g1',this)">📘 المجموعة ١</button>
+    <button class="nav-tab" onclick="showPage('p-g2',this)">📗 المجموعة ٢</button>
+    <button class="nav-tab" onclick="showPage('p-students',this)">👥 إدارة الطلاب</button>
+  </div>
+  <div class="nav-actions">
+    <button class="btn-icon" id="darkToggle" title="وضع ليلي">🌙</button>
+  </div>
+</nav>
+
+<!-- GROUP 1 -->
+<div class="page active" id="p-g1">
+  <div class="sec-head">
+    <div class="sec-label">المنهج الدراسي</div>
+    <h2>المجموعة الأولى — الصفوف ١-٣</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="group-banner g1">
+    <div style="font-size:2.5rem">📘</div>
+    <div>
+      <h3>طلاب الصفوف الأولى — Grades 1-3</h3>
+      <p>منهج تأسيسي يبدأ من الصفر ويبني مهارات القراءة والكتابة والتحدث تدريجياً</p>
+      <div class="meta-badges">
+        <span class="mbadge">⏱ ٦٠ دقيقة/درس</span>
+        <span class="mbadge">📅 درسان أسبوعياً</span>
+        <span class="mbadge">📚 ١٦ درساً</span>
+        <span class="mbadge">📆 ٨ أسابيع</span>
+      </div>
+    </div>
+  </div>
+  <div id="g1-lessons"></div>
+</div>
+
+<!-- GROUP 2 -->
+<div class="page" id="p-g2">
+  <div class="sec-head">
+    <div class="sec-label">المنهج الدراسي</div>
+    <h2>المجموعة الثانية — الصفوف ٤-٦</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="group-banner g2">
+    <div style="font-size:2.5rem">📗</div>
+    <div>
+      <h3>طلاب الصفوف العليا — Grades 4-6</h3>
+      <p>منهج موسّع يُعزز المهارات اللغوية ويُطوّر القدرة على القراءة والحوار والكتابة</p>
+      <div class="meta-badges">
+        <span class="mbadge">⏱ ٩٠ دقيقة/درس</span>
+        <span class="mbadge">📅 درسان أسبوعياً</span>
+        <span class="mbadge">📚 ١٦ درساً</span>
+        <span class="mbadge">📆 ٨ أسابيع</span>
+      </div>
+    </div>
+  </div>
+  <div id="g2-lessons"></div>
+</div>
+
+<!-- STUDENTS -->
+<div class="page" id="p-students">
+  <div class="sec-head">
+    <div class="sec-label">لوحة التحكم</div>
+    <h2>إدارة الطلاب</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card s-total">
+      <div class="st-val" id="stat-total">0</div>
+      <div class="st-lbl">👥 إجمالي الطلاب</div>
+    </div>
+    <div class="stat-card s-paid">
+      <div class="st-val" id="stat-paid">0</div>
+      <div class="st-lbl">✅ الرسوم مدفوعة</div>
+    </div>
+    <div class="stat-card s-unpaid">
+      <div class="st-val" id="stat-unpaid">0</div>
+      <div class="st-lbl">❌ رسوم غير مدفوعة</div>
+    </div>
+    <div class="stat-card s-att">
+      <div class="st-val" id="stat-att">0%</div>
+      <div class="st-lbl">📅 نسبة الحضور</div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" class="tb-search" id="searchInput" placeholder="🔍 ابحث عن طالب..." oninput="renderTable()">
+    <div class="filter-btns">
+      <button class="fbtn active" onclick="setFilter('all',this)">الكل</button>
+      <button class="fbtn" onclick="setFilter('g1',this)">المجموعة ١</button>
+      <button class="fbtn" onclick="setFilter('g2',this)">المجموعة ٢</button>
+    </div>
+    <div class="act-btns">
+      <button class="btn btn-primary" onclick="openAddModal()">➕ إضافة طالب</button>
+      <button class="btn btn-warning" onclick="openColModal()">📋 عمود جديد</button>
+      <button class="btn btn-success" onclick="exportCSV()">📤 تصدير CSV</button>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <div class="tbl-scroll">
+      <table id="studentTable">
+        <thead>
+          <tr id="tableHead">
+            <th style="width:38px">#</th>
+            <th style="min-width:150px">اسم الطالب</th>
+            <th style="min-width:120px">المجموعة</th>
+            <th style="min-width:110px">الحضور</th>
+            <th style="min-width:110px">التقييم</th>
+            <th style="min-width:130px">الرسوم</th>
+            <th style="width:70px;text-align:center">حذف</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ADD STUDENT MODAL -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <h3>➕ إضافة طالب جديد</h3>
+    <label>اسم الطالب</label>
+    <input type="text" id="newName" placeholder="أدخل اسم الطالب...">
+    <label>المجموعة</label>
+    <select id="newGroup">
+      <option value="g1">المجموعة الأولى — صفوف ١-٣</option>
+      <option value="g2">المجموعة الثانية — صفوف ٤-٦</option>
+    </select>
+    <label>الحضور</label>
+    <select id="newAtt">
+      <option value="present">حاضر</option>
+      <option value="absent">غائب</option>
+      <option value="late">متأخر</option>
+    </select>
+    <label>التقييم</label>
+    <select id="newEval">
+      <option value="excellent">ممتاز</option>
+      <option value="verygood">جيد جداً</option>
+      <option value="good">جيد</option>
+      <option value="acceptable">مقبول</option>
+      <option value="weak">ضعيف</option>
+    </select>
+    <label>الرسوم</label>
+    <select id="newFees">
+      <option value="paid">مدفوعة</option>
+      <option value="partial">مدفوعة جزئياً</option>
+      <option value="unpaid">غير مدفوعة</option>
+    </select>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('addModal')">إلغاء</button>
+      <button class="btn btn-primary" onclick="addStudent()">إضافة ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD COLUMN MODAL -->
+<div class="modal-overlay" id="colModal">
+  <div class="modal">
+    <h3>📋 إضافة عمود جديد</h3>
+    <label>اسم العمود</label>
+    <input type="text" id="newColName" placeholder="مثال: القراءة، الواجب، الاختبار...">
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('colModal')">إلغاء</button>
+      <button class="btn btn-warning" onclick="addColumn()">إضافة ✓</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===================== CURRICULUM DATA =====================
+const g1Data = [
+  { week:1, lessons:[
+    { num:1, title:"الأبجدية — A to M", topic:"The Alphabet Part 1",
+      objectives:["التعرف على الحروف A إلى M","نطق كل حرف بشكل صحيح","كتابة الحروف في الدفتر"],
+      vocab:["A=Apple","B=Ball","C=Cat","D=Dog","E=Egg","F=Fish","G=Girl","H=Hat","I=Ice","J=Jam","K=Key","L=Lion","M=Monkey"],
+      speaking:["ترديد الحروف جماعياً: A-B-C-D...","أغنية الأبجدية ABC Song","كل طالب يقول حرفاً بالترتيب"],
+      reading:["قراءة الحروف من السبورة","تمييز الحروف الكبيرة والصغيرة: A/a, B/b"],
+      writing:["رسم الحروف في الهواء","كتابة A,B,C,D,E في الدفتر"],
+      homework:"اكتب الحروف من A إلى M ثلاث مرات",
+      outcomes:["يعرف الحروف من A إلى M","ينطقها صحيحاً","يكتبها بوضوح"] },
+    { num:2, title:"الأبجدية — N to Z", topic:"The Alphabet Part 2",
+      objectives:["إتمام الأبجدية من N إلى Z","تكرار A-Z كاملة","ربط كل حرف بكلمة مألوفة"],
+      vocab:["N=Nose","O=Orange","P=Pen","Q=Queen","R=Rain","S=Sun","T=Tree","U=Up","V=Van","W=Water","X=Box","Y=Yes","Z=Zoo"],
+      speaking:["ترديد الأبجدية كاملة سريعاً وبطيئاً","لعبة: من يقول الحرف الذي يأتي بعده؟"],
+      reading:["قراءة الأبجدية كاملة","تمييز الحرف المختلف بين ٣ حروف متشابهة"],
+      writing:["كتابة الأبجدية كاملة في الدفتر","رسم شيء يبدأ بحرف معين"],
+      homework:"اكتب الأبجدية كاملة مرتين وارسم صورة لـ 3 حروف",
+      outcomes:["يعرف الأبجدية كاملة","يكتبها من الذاكرة","يربط كل حرف بكلمة"] }
+  ]},
+  { week:2, lessons:[
+    { num:3, title:"التحيات — Greetings", topic:"Hello & Goodbye",
+      objectives:["تعلم التحيات اليومية","الإجابة على أسئلة الحال","استخدام التحيات بشكل طبيعي"],
+      vocab:["Hello","Hi","Good morning","Good afternoon","Good evening","Goodbye","Bye","How are you?","I am fine","Thank you"],
+      speaking:["حوار: Hello! How are you? — I am fine, thank you!","ممارسة مع الزميل المجاور"],
+      reading:["قراءة بطاقات التحيات على السبورة","قراءة جملة: Hello, my name is..."],
+      writing:["كتابة: Hello! My name is ___.","كتابة ٣ تحيات في الدفتر"],
+      homework:"حيّ ٣ أشخاص في بيتك بالإنجليزية وأخبرني غداً",
+      outcomes:["يحيي بالإنجليزية","يُجيب على كيف حالك","يودّع بشكل صحيح"] },
+    { num:4, title:"تقديم النفس — About Me", topic:"Personal Questions",
+      objectives:["تعلم كيفية تقديم النفس","الإجابة على: ما اسمك؟ كم عمرك؟"],
+      vocab:["name","age","year","class","live","school","student","teacher","boy","girl"],
+      speaking:["What is your name? — My name is...","How old are you? — I am ___ years old.","What class are you in?"],
+      reading:["قراءة جملة التعريف من السبورة","تمييز الكلمات الشخصية"],
+      writing:["كتابة: My name is ___, I am ___ years old, I am in class ___"],
+      homework:"اكتب تعريفاً بنفسك في ٣ جمل",
+      outcomes:["يُقدّم نفسه بالإنجليزية","يُجيب على الأسئلة الشخصية"] }
+  ]},
+  { week:3, lessons:[
+    { num:5, title:"الأرقام ١-١٠ — Numbers", topic:"Counting 1-10",
+      objectives:["العد من ١ إلى ١٠","كتابة الأرقام بالكلمات","استخدام الأرقام في جمل"],
+      vocab:["one","two","three","four","five","six","seven","eight","nine","ten"],
+      speaking:["العد الجماعي: One, two, three!","لعبة: أنا أفكر برقم بين ١ و١٠ — ما هو؟"],
+      reading:["قراءة الأرقام بالكلمات","قراءة جملة: I have ___ books."],
+      writing:["كتابة الأرقام ١-١٠ بالكلمات","I have ___ brothers."],
+      homework:"اكتب الأرقام من one إلى ten مرتين",
+      outcomes:["يعدّ من ١ إلى ١٠","يكتب الأرقام بالكلمات","يستخدمها في جملة"] },
+    { num:6, title:"الأرقام ١١-٢٠ — More Numbers", topic:"Counting 11-20",
+      objectives:["تعلم الأرقام من ١١ إلى ٢٠","العد الكامل ١-٢٠","الأرقام في سياق يومي"],
+      vocab:["eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"],
+      speaking:["العد التصاعدي والتنازلي","لعبة: رمي الكرة والعد"],
+      reading:["قراءة الأرقام من السبورة","تمييز الأرقام المتشابهة"],
+      writing:["كتابة الأرقام ١١-٢٠ بالكلمات"],
+      homework:"اكتب الأرقام من 1 إلى 20 بالأرقام وبالكلمات",
+      outcomes:["يعدّ من ١ إلى ٢٠ بطلاقة","يكتب الأرقام الكاملة"] }
+  ]},
+  { week:4, lessons:[
+    { num:7, title:"الألوان — Colours", topic:"Colours of the World",
+      objectives:["تعلم أسماء ١٠ ألوان","وصف الأشياء بالألوان","الجملة الوصفية البسيطة"],
+      vocab:["red","blue","green","yellow","black","white","orange","pink","purple","brown"],
+      speaking:["What colour is this? — It is red.","I like the colour blue.","مسابقة: من يُسمّي أكثر ألوان؟"],
+      reading:["قراءة بطاقات الألوان","The sky is blue. The sun is yellow."],
+      writing:["كتابة اسم اللون بجانب صورته","The ___ is ___ (colour)"],
+      homework:"ارسم ٥ أشياء في بيتك واكتب اسم كل شيء ولونه",
+      outcomes:["يُسمّي ١٠ ألوان","يصف الأشياء بلونها","يكتب الألوان صحيحاً"] },
+    { num:8, title:"الأسرة — Family", topic:"My Family",
+      objectives:["تعلم أفراد الأسرة","وصف الأسرة بجمل بسيطة","الضمائر he/she"],
+      vocab:["father","mother","brother","sister","grandfather","grandmother","son","daughter","family","uncle","aunt"],
+      speaking:["This is my father. He is tall.","This is my mother. She is kind.","Do you have a brother?"],
+      reading:["قراءة جمل الأسرة من السبورة"],
+      writing:["كتابة: My family has ___ people. I have ___ brothers and ___ sisters."],
+      homework:"ارسم أسرتك وسمّ كل شخص بالإنجليزية",
+      outcomes:["يُسمّي أفراد أسرته","يصفهم بجمل بسيطة","يستخدم he/she"] }
+  ]},
+  { week:5, lessons:[
+    { num:9, title:"الحيوانات — Animals", topic:"Animals Around Us",
+      objectives:["تعلم أسماء ١٠ حيوانات","وصف الحيوانات","تقليد أصواتها"],
+      vocab:["cat","dog","cow","horse","sheep","chicken","lion","elephant","monkey","fish","bird","rabbit"],
+      speaking:["I see a cat. It is small and white.","What animal is this? — It is a ___","تقليد أصوات الحيوانات للتعلم"],
+      reading:["قراءة أسماء الحيوانات","The lion is big. The rabbit is small."],
+      writing:["كتابة: The ___ is ___. It lives in ___"],
+      homework:"ارسم ٥ حيوانات واكتب اسم كل منها",
+      outcomes:["يُسمّي ١٠ حيوانات","يصفها بجملة بسيطة","يقرأ أسماءها"] },
+    { num:10, title:"أدوات المدرسة — School Objects", topic:"In My Bag",
+      objectives:["تعلم أدوات المدرسة","وصف محتوى الحقيبة","الجملة: I have a..."],
+      vocab:["pen","pencil","book","bag","ruler","eraser","sharpener","notebook","desk","chair","board","chalk"],
+      speaking:["I have a pen in my bag.","What is this? — This is a ruler.","لعبة: ماذا في الحقيبة؟"],
+      reading:["قراءة أسماء الأدوات","I use a pen to write."],
+      writing:["كتابة: I have a ___, a ___, and a ___ in my bag."],
+      homework:"اكتب أسماء كل الأشياء في حقيبتك بالإنجليزية",
+      outcomes:["يُسمّي أدوات المدرسة","يستخدم I have","يقرأ الأسماء"] }
+  ]},
+  { week:6, lessons:[
+    { num:11, title:"أعضاء الجسم — Body Parts", topic:"My Body",
+      objectives:["تعلم أسماء أعضاء الجسم","الاستجابة للأوامر","لعبة Simon Says"],
+      vocab:["head","eyes","ears","nose","mouth","teeth","neck","shoulders","hands","fingers","legs","feet"],
+      speaking:["Touch your nose! Touch your head!","Simon says touch your ears!","I have two eyes and one nose."],
+      reading:["قراءة أسماء الأعضاء من رسم على السبورة"],
+      writing:["رسم وجه وكتابة أسماء أعضائه"],
+      homework:"ارسم جسمك واكتب أسماء ١٠ أعضاء على الأقل",
+      outcomes:["يُسمّي ١٠ أعضاء جسم","يستجيب لأوامر Simon Says","يرسم ويُسمّي"] },
+    { num:12, title:"الفواكه — Fruits", topic:"Yummy Fruits",
+      objectives:["تعلم أسماء ١٠ فواكه","التعبير عن التفضيل","وصف الطعم واللون"],
+      vocab:["apple","banana","orange","mango","grapes","watermelon","strawberry","lemon","pear","dates"],
+      speaking:["I like bananas. They are sweet.","Do you like oranges? — Yes/No, I (don't) like them.","ما فاكهتك المفضلة؟"],
+      reading:["قراءة أسماء الفواكه وألوانها"],
+      writing:["كتابة: My favourite fruit is ___. It is ___ and ___."],
+      homework:"اكتب أسماء ٥ فواكه تحبها مع لونها",
+      outcomes:["يُسمّي ١٠ فواكه","يُعبّر عن تفضيله","يصف الفاكهة بلونها وطعمها"] }
+  ]},
+  { week:7, lessons:[
+    { num:13, title:"الـ Phonics والجمل البسيطة", topic:"Simple Sentences & Phonics",
+      objectives:["تكوين جمل بسيطة مفيدة","قراءة كلمات CVC ثلاثية الحروف","تطبيق الـ Phonics الأساسي"],
+      vocab:["cat/bat/hat","big/pig/dig","sun/run/fun","bed/red/fed","hot/pot/dot"],
+      speaking:["قراءة الكلمات المتشابهة في الصوت","لعبة: ما الكلمة التي تختلف؟"],
+      reading:["قراءة كلمات CVC من السبورة","The cat sat on a mat."],
+      writing:["كتابة ٣ كلمات من نفس عائلة الصوت"],
+      homework:"اكتب ٥ كلمات من عائلة -at مثل: cat, bat, hat",
+      outcomes:["يقرأ كلمات CVC","يُميّز الأصوات المتشابهة","يفهم أساس Phonics"] },
+    { num:14, title:"تقديم الذات الكامل — Self Introduction", topic:"All About Me",
+      objectives:["تقديم نفس كاملة بجمل متصلة","الحديث عن الأسرة والتفضيلات","التحدث بثقة أمام الفصل"],
+      vocab:["My name is","I am","I live in","I like","My favourite","I have","I go to"],
+      speaking:["كل طالب يقدم نفسه أمام الفصل في ٣-٤ جمل","My name is ___. I am ___ years old. I like ___."],
+      reading:["قراءة نموذج تقديمي مكتوب على السبورة"],
+      writing:["كتابة فقرة تعريفية: اسم + عمر + أسرة + فاكهة مفضلة"],
+      homework:"احفظ تعريفك واقدمه لأحد من أهلك",
+      outcomes:["يُقدّم نفسه بجمل متعددة","يتحدث بثقة","يربط المعلومات في فقرة"] }
+  ]},
+  { week:8, lessons:[
+    { num:15, title:"مراجعة شاملة — General Review", topic:"Let's Remember Everything!",
+      objectives:["مراجعة جميع مواضيع الأسابيع ١-٧","تقوية نقاط الضعف","التحضير للاختبار النهائي"],
+      vocab:["جميع المفردات السابقة من الدروس ١-١٤"],
+      speaking:["مسابقة المراجعة الكبرى بين المجموعات","كل مجموعة تُقدم موضوعاً مختلفاً"],
+      reading:["قراءة نص شامل يجمع مفردات متعددة"],
+      writing:["كتابة فقرة كاملة: اسمي + أسرتي + ألواني + حيواني المفضل"],
+      homework:"راجع جميع الكلمات في دفترك استعداداً للاختبار",
+      outcomes:["يتذكر جميع المفردات","يُطبق ما تعلمه في سياق متكامل"] },
+    { num:16, title:"الاختبار النهائي — Final Assessment", topic:"Show What You Know!",
+      objectives:["تقييم جميع المهارات المكتسبة","قياس مستوى الطالب النهائي","تحديد ما يحتاج مزيداً من العمل"],
+      vocab:["جميع المفردات المدروسة في البرنامج"],
+      speaking:["كل طالب يُجيب على ٣ أسئلة شفهية: اسمه + لون + حيوان"],
+      reading:["قراءة ١٠ كلمات أو جملة قصيرة بوضوح"],
+      writing:["كتابة ١٠ مفردات وجملة تعريفية كاملة"],
+      homework:"لا واجب — أتممت البرنامج بنجاح! 🎉",
+      outcomes:["تحقيق نتائج البرنامج الكاملة","الانتقال لمستوى أعلى بثقة"] }
+  ]}
+];
+
+const g2Data = [
+  { week:1, lessons:[
+    { num:1, title:"مراجعة الأبجدية والتحيات", topic:"Back to Basics — Greetings",
+      objectives:["مراجعة الأبجدية بسرعة أكبر","تعلم تحيات رسمية وغير رسمية","الحوار الكامل المتبادل"],
+      vocab:["Good morning","Good afternoon","Nice to meet you","How do you do?","What's up?","See you later","Take care","Have a nice day","You're welcome","Excuse me"],
+      speaking:["حوار كامل بين طالبين: مقدمة + تحية + وداع","A: Hello! My name is ___. B: Hi! Nice to meet you!"],
+      reading:["قراءة حوار قصير من السبورة","قراءة الحروف الكبيرة والصغيرة بسرعة"],
+      writing:["كتابة حوار تحية كامل في الدفتر"],
+      homework:"اكتب حواراً كاملاً بين شخصين يلتقيان للمرة الأولى",
+      outcomes:["يُجري حواراً كاملاً","يستخدم تحيات متنوعة","يُميّز الرسمي من الودي"] },
+    { num:2, title:"التعريف المفصّل — Who Am I?", topic:"Extended Introduction",
+      objectives:["تقديم نفس مفصّل","الحديث عن الهوايات","استخدام I like / I love / I hate"],
+      vocab:["hobby","favourite","like","love","enjoy","prefer","sport","music","reading","cooking","drawing","football"],
+      speaking:["My name is ___, I am ___ years old, I like ___.","What do you like to do? — I like playing football."],
+      reading:["قراءة فقرة تعريفية نموذجية كاملة"],
+      writing:["كتابة فقرة تعريفية كاملة من ٥ جمل"],
+      homework:"اكتب ٥ جمل عن نفسك وعن هواياتك",
+      outcomes:["يكتب فقرة تعريفية","يتحدث عن هواياته","يستخدم أفعال التفضيل"] }
+  ]},
+  { week:2, lessons:[
+    { num:3, title:"الأرقام والحياة اليومية", topic:"Numbers in Daily Life",
+      objectives:["الأرقام حتى ١٠٠","الأرقام في السياقات اليومية","العمر والوقت والسعر"],
+      vocab:["twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety","hundred","price","age","year","score"],
+      speaking:["How old are you? — I am ___ years old.","What is the price? — It is ___ riyals.","What is the score?"],
+      reading:["قراءة الأرقام الكبيرة في جمل","The book costs twenty riyals."],
+      writing:["كتابة أرقام مختلفة بالكلمات في جمل كاملة"],
+      homework:"اكتب عمر كل أفراد عائلتك بالإنجليزية",
+      outcomes:["يعدّ حتى ١٠٠","يستخدم الأرقام في الحياة اليومية"] },
+    { num:4, title:"الألوان والأوصاف", topic:"Colours & Descriptions",
+      objectives:["توسيع مفردات الألوان","الأوصاف: big/small, tall/short, old/new","الجملة الوصفية الكاملة"],
+      vocab:["light blue","dark green","golden","silver","colourful","bright","tall","short","big","small","old","new","beautiful","ugly"],
+      speaking:["Describe your friend: He is tall with black hair.","The car is big, red, and old."],
+      reading:["My house is big and white. It has green windows."],
+      writing:["كتابة وصف لمكانك المفضل في ٣ جمل"],
+      homework:"صِف غرفتك بالإنجليزية في ٣-٤ جمل",
+      outcomes:["يصف الأشياء بتفصيل","يستخدم صفات متنوعة","يكتب جملاً وصفية"] }
+  ]},
+  { week:3, lessons:[
+    { num:5, title:"الأسرة الموسّعة — Family Tree", topic:"My Family",
+      objectives:["تعلم أفراد الأسرة الموسعة","وصف الأشخاص","استخدام He is / She is بطلاقة"],
+      vocab:["cousin","nephew","niece","aunt","uncle","husband","wife","parents","grandparents","relative","neighbour","friend"],
+      speaking:["This is my uncle. He is a doctor.","My grandmother is kind and funny.","How many people are in your family?"],
+      reading:["My name is Sara. I have a big family. My father is a teacher..."],
+      writing:["كتابة فقرة عن الأسرة: My family has ___ members. My father is ___..."],
+      homework:"اكتب ٥ جمل عن أفراد أسرتك مع وصف كل شخص",
+      outcomes:["يُسمّي أفراد الأسرة الموسعة","يصفهم بجمل كاملة","يكتب فقرة عائلية"] },
+    { num:6, title:"الحيوانات ومواطنها — Habitats", topic:"Where Do Animals Live?",
+      objectives:["تعلم ٢٠ حيوان","وصف وتصنيف الحيوانات","الحيوانات الأليفة والبرية"],
+      vocab:["domestic","wild","forest","desert","ocean","farm","pet","zoo","cage","prey","hunter","dangerous","safe"],
+      speaking:["The lion is a wild animal. It lives in the forest.","I have a pet cat at home. It is friendly."],
+      reading:["The camel is a desert animal. It can live without water for a long time."],
+      writing:["كتابة: The ___ is a ___ animal. It lives in ___. It eats ___."],
+      homework:"اختر حيواناً وصفه بالتفصيل في ٤ جمل",
+      outcomes:["يصنّف الحيوانات","يصف مواطنها وغذاءها","يكتب فقرة وصفية"] }
+  ]},
+  { week:4, lessons:[
+    { num:7, title:"المدرسة والمواد الدراسية", topic:"My School Life",
+      objectives:["مفردات المدرسة الموسعة","وصف اليوم الدراسي","المواد الدراسية المختلفة"],
+      vocab:["mathematics","science","Arabic","English","history","geography","art","PE","break","lesson","homework","exam","grade","classroom"],
+      speaking:["My favourite subject is English because it is interesting.","We have ___ lessons on Monday.","What subjects do you study?"],
+      reading:["On Monday, I have English, Maths, and Science. I like school."],
+      writing:["كتابة: My school has ___. I like ___ subject. School starts at ___."],
+      homework:"اكتب فقرة عن يوم دراسي عادي لك من الصباح للمساء",
+      outcomes:["يتحدث عن مدرسته","يُسمّي المواد الدراسية","يصف يومه الدراسي"] },
+    { num:8, title:"الجسم والصحة — Health", topic:"Stay Healthy!",
+      objectives:["مفردات الصحة والمرض","التعبير عن الألم","نصائح الصحة اليومية"],
+      vocab:["headache","stomachache","cold","fever","tired","healthy","sick","doctor","medicine","hospital","rest","water","exercise","sleep"],
+      speaking:["I have a headache. I need to rest.","How do you feel? — I feel sick today.","What is wrong? — I have a fever."],
+      reading:["To stay healthy, you should eat fruits, drink water, and sleep well."],
+      writing:["كتابة: Today I feel ___. I should ___ to feel better."],
+      homework:"اكتب ٥ نصائح صحية مهمة بالإنجليزية",
+      outcomes:["يُعبّر عن حالته الصحية","يُجري حوار مع الطبيب","يكتب نصائح صحية"] }
+  ]},
+  { week:5, lessons:[
+    { num:9, title:"الطعام والمطعم — Food & Restaurant", topic:"Let's Eat!",
+      objectives:["مفردات الطعام المتنوعة","الطلب في المطعم","التعبير عن الجوع والشبع"],
+      vocab:["rice","bread","meat","chicken","fish","salad","soup","juice","water","hungry","thirsty","delicious","spicy","sweet","menu","order"],
+      speaking:["I am hungry. Can I have a sandwich please?","What would you like to eat? — I would like ___.","حوار بين نادل وزبون في مطعم"],
+      reading:["قراءة قائمة طعام بسيطة: Sandwich - 5 riyals, Juice - 3 riyals"],
+      writing:["كتابة: I like to eat ___ for breakfast. For lunch I eat ___. My favourite food is ___."],
+      homework:"اكتب وجباتك الكاملة اليوم (الفطور + الغداء + العشاء) بالإنجليزية",
+      outcomes:["يُطلب الطعام بالإنجليزية","يُجري حوار المطعم","يصف أكله المفضل"] },
+    { num:10, title:"الفواكه والخضروات — Fruits & Veg", topic:"From the Garden",
+      objectives:["٢٠ فاكهة وخضروات","الفرق بين fruit وvegetable","التعبير عن التفضيل بالتفصيل"],
+      vocab:["tomato","potato","onion","carrot","cucumber","lettuce","spinach","peas","corn","garlic","pepper","cabbage","mint","parsley"],
+      speaking:["I prefer fruits to vegetables.","What is your favourite vegetable? — I like carrots because they are healthy.","لعبة: فاكهة أم خضروات؟"],
+      reading:["Carrots are orange vegetables. They are good for your eyes. Eat them every day!"],
+      writing:["كتابة: My favourite vegetable is ___ because ___. I eat it with ___."],
+      homework:"اكتب ٥ فواكه و٥ خضروات مع لون كل منها وفائدتها",
+      outcomes:["يُسمّي ٢٠ فاكهة وخضروات","يُعبّر عن تفضيله بجملة سبب"] }
+  ]},
+  { week:6, lessons:[
+    { num:11, title:"الأفعال اليومية — Daily Routines", topic:"My Day",
+      objectives:["أفعال الحياة اليومية","وصف الروتين اليومي","استخدام الزمن الحاضر"],
+      vocab:["wake up","brush teeth","wash face","eat breakfast","go to school","study","play","pray","watch","read","sleep","help","cook","clean"],
+      speaking:["I wake up at 6 AM. I brush my teeth and wash my face.","What do you do after school? — I play football then study.","حوار عن الروتين اليومي"],
+      reading:["Ahmad wakes up at 6. He eats breakfast and goes to school. After school he plays."],
+      writing:["كتابة فقرة روتيني اليومي من ٥ جمل متسلسلة"],
+      homework:"اكتب روتينك اليومي الكامل من الاستيقاظ حتى النوم",
+      outcomes:["يصف روتينه اليومي","يستخدم أفعال الحركة","يكتب فقرة زمنية متسلسلة"] },
+    { num:12, title:"الأماكن في المدينة — Places", topic:"Around Town",
+      objectives:["أسماء الأماكن في المدينة","طلب الاتجاهات","وصف المكان"],
+      vocab:["school","market","mosque","hospital","park","library","bakery","supermarket","police station","fire station","bank","pharmacy","restaurant","post office"],
+      speaking:["Where is the hospital? — Go straight and turn right.","I go to the market on Fridays.","Excuse me, where is the mosque?"],
+      reading:["Our town has a big market, a hospital, and a beautiful park near the school."],
+      writing:["كتابة: In my town, there is ___. I go to the ___ to ___. My favourite place is ___ because ___."],
+      homework:"اكتب ٥ أماكن في مدينتك وما تفعله في كل مكان",
+      outcomes:["يُسمّي أماكن المدينة","يطلب الاتجاهات","يصف مدينته"] }
+  ]},
+  { week:7, lessons:[
+    { num:13, title:"مهارات القراءة — Reading Skills", topic:"Reading for Understanding",
+      objectives:["قراءة فقرة وفهم محتواها","الإجابة على أسئلة الفهم","تخمين معنى الكلمة من السياق"],
+      vocab:["paragraph","sentence","meaning","understand","answer","question","topic","main idea","detail","character"],
+      speaking:["ما الفكرة الرئيسية في الفقرة؟","Who is the main character? What happened?","ناقش مع زميلك ما قرأته"],
+      reading:["قراءة فقرة كاملة من ٥-٦ جمل والإجابة على ٣ أسئلة: Who? What? Where?"],
+      writing:["كتابة إجابات الفهم في جمل كاملة: The story is about ___."],
+      homework:"اقرأ الفقرة في دفترك ٣ مرات وأجب عن الأسئلة كتابياً",
+      outcomes:["يقرأ ويفهم فقرة كاملة","يُجيب على أسئلة الفهم","يُحدد الفكرة الرئيسية"] },
+    { num:14, title:"الـ Phonics المتوسط", topic:"Intermediate Phonics & Patterns",
+      objectives:["أصوات الحروف المركبة: sh, ch, th","قراءة كلمات من نمط CVCC","ربط الصوت بالكتابة"],
+      vocab:["ship/shop/show","chat/chin/chess","this/that/them/think","black/block/blank","frog/from/frost","stamp/stand/still"],
+      speaking:["قراءة كل مجموعة صوتية بصوت عالٍ","مسابقة: من ينطق الأسرع بدون أخطاء؟"],
+      reading:["The ship is in the shop. Can you think of a word that starts with 'th'?"],
+      writing:["كتابة ٣ كلمات لكل نمط صوتي في الدفتر"],
+      homework:"اكتب ٥ كلمات تبدأ بـ sh و٥ كلمات تبدأ بـ ch",
+      outcomes:["ينطق الأصوات المركبة","يقرأ كلمات CVCC","يميّز الأنماط الصوتية"] }
+  ]},
+  { week:8, lessons:[
+    { num:15, title:"مراجعة شاملة وحوار حر", topic:"Final Review & Free Conversation",
+      objectives:["مراجعة كل المواضيع السابقة","حوار حر وشامل","التحضير للاختبار النهائي"],
+      vocab:["جميع مفردات البرنامج من الدروس ١-١٤"],
+      speaking:["حوار حر بين الطلاب عن مواضيع متنوعة","كل طالب يُقدّم نفسه ويصف يومه وأسرته وروتينه"],
+      reading:["قراءة نص شامل يجمع مواضيع متعددة من البرنامج"],
+      writing:["كتابة فقرتين: عن نفسك + عن مكانك المفضل في المدينة"],
+      homework:"راجع كل المفردات والجمل استعداداً للاختبار الشامل",
+      outcomes:["يُطبق جميع ما تعلمه","يُجري حواراً طلقاً","يكتب بثقة واستقلالية"] },
+    { num:16, title:"الاختبار النهائي الشامل", topic:"Final Assessment — Show Your Best!",
+      objectives:["تقييم جميع المهارات المكتسبة","قياس التقدم عبر الشهرين","تحديد الخطوات التالية"],
+      vocab:["جميع مفردات البرنامج"],
+      speaking:["تقديم نفس كامل + وصف الأسرة + الروتين اليومي في حوار منسجم"],
+      reading:["قراءة فقرة والإجابة على أسئلة فهم كتابياً"],
+      writing:["كتابة فقرتين مترابطتين عن موضوع مختار"],
+      homework:"لا واجب — أكملت البرنامج بنجاح! 🎓",
+      outcomes:["إظهار جميع مهارات البرنامج","الاستعداد للمستوى التالي","بناء الثقة اللغوية الكاملة"] }
+  ]}
+];
+
+// ===================== RENDER CURRICULUM =====================
+function renderCurriculum(data, containerId, cls) {
+  const el = document.getElementById(containerId);
+  let html = '';
+  data.forEach(week => {
+    html += `<div class="week-hd" onclick="toggleWeek(this)">
+      <span>📅 الأسبوع ${week.week} — Week ${week.week}</span>
+      <span class="warr">▶</span>
+    </div><div class="week-body">`;
+    week.lessons.forEach(l => {
+      html += `<div class="lesson-card">
+        <div class="lc-head" onclick="toggleLesson(this)">
+          <div class="lc-num ${cls}">L${l.num}</div>
+          <div class="lc-info">
+            <div class="lc-title">${l.title}</div>
+            <div class="lc-sub">${l.topic}</div>
+          </div>
+          <span class="lc-arrow">▶</span>
+        </div>
+        <div class="lc-body">
+          <div class="lc-grid">
+            <div class="lc-sec">
+              <h5>🎯 الأهداف</h5>
+              <ul>${l.objectives.map(o=>`<li>${o}</li>`).join('')}</ul>
+            </div>
+            <div class="lc-sec">
+              <h5>📚 المفردات</h5>
+              <div class="tag-row">${l.vocab.map(v=>`<span class="tag">${v}</span>`).join('')}</div>
+            </div>
+            <div class="lc-sec">
+              <h5>🗣️ التحدث</h5>
+              <ul>${l.speaking.map(s=>`<li>${s}</li>`).join('')}</ul>
+            </div>
+            <div class="lc-sec">
+              <h5>📖 القراءة</h5>
+              <ul>${l.reading.map(r=>`<li>${r}</li>`).join('')}</ul>
+            </div>
+            <div class="lc-sec">
+              <h5>✍️ الكتابة</h5>
+              <ul>${l.writing.map(w=>`<li>${w}</li>`).join('')}</ul>
+            </div>
+            <div class="lc-sec">
+              <h5>📋 الواجب</h5>
+              <p>${l.homework}</p>
+            </div>
+          </div>
+          <div class="outcome-row">
+            <strong>✅ نتائج التعلم المتوقعة:</strong>
+            ${l.outcomes.map(o=>`<span class="otag">${o}</span>`).join('')}
+          </div>
+        </div>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+renderCurriculum(g1Data, 'g1-lessons', 'g1c');
+renderCurriculum(g2Data, 'g2-lessons', 'g2c');
+
+function toggleWeek(el) {
+  const body = el.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  el.classList.toggle('open', !isOpen);
+}
+function toggleLesson(el) {
+  const body = el.nextElementSibling;
+  const arrow = el.querySelector('.lc-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+// ===================== STUDENT MANAGEMENT =====================
+let students = [];
+let customColumns = [];
+let activeFilter = 'all';
+
+const ATT_MAP = { present:{label:'حاضر',cls:'att-p'}, absent:{label:'غائب',cls:'att-a'}, late:{label:'متأخر',cls:'att-l'} };
+const EVAL_MAP = { excellent:{label:'ممتاز',cls:'ev-ex'}, verygood:{label:'جيد جداً',cls:'ev-vg'}, good:{label:'جيد',cls:'ev-go'}, acceptable:{label:'مقبول',cls:'ev-ac'}, weak:{label:'ضعيف',cls:'ev-wk'} };
+const FEES_MAP = { paid:{label:'مدفوعة',cls:'fee-pd'}, partial:{label:'جزئياً',cls:'fee-pp'}, unpaid:{label:'غير مدفوعة',cls:'fee-up'} };
+
+function loadData() {
+  try {
+    const s = localStorage.getItem('eng_students');
+    const c = localStorage.getItem('eng_columns');
+    if (s) students = JSON.parse(s);
+    if (c) customColumns = JSON.parse(c);
+  } catch(e) { students = []; customColumns = []; }
+}
+function saveData() {
+  localStorage.setItem('eng_students', JSON.stringify(students));
+  localStorage.setItem('eng_columns', JSON.stringify(customColumns));
+}
+function genId() { return 'std_' + Date.now() + '_' + Math.random().toString(36).slice(2,6); }
+
+function updateStats() {
+  const vis = getFiltered();
+  const total = vis.length;
+  const paid = vis.filter(s => s.fees === 'paid').length;
+  const unpaid = vis.filter(s => s.fees === 'unpaid').length;
+  const present = vis.filter(s => s.attendance === 'present').length;
+  const attPct = total > 0 ? Math.round(present / total * 100) : 0;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-paid').textContent = paid;
+  document.getElementById('stat-unpaid').textContent = unpaid;
+  document.getElementById('stat-att').textContent = attPct + '%';
+}
+
+function getFiltered() {
+  const q = (document.getElementById('searchInput')?.value || '').trim().toLowerCase();
+  return students.filter(s => {
+    const matchFilter = activeFilter === 'all' || s.group === activeFilter;
+    const matchSearch = !q || s.name.toLowerCase().includes(q);
+    return matchFilter && matchSearch;
+  });
+}
+
+function renderTable() {
+  const tbody = document.getElementById('tableBody');
+  const thead = document.getElementById('tableHead');
+  const rows = getFiltered();
+
+  // Rebuild header custom cols
+  const existingCustomTh = thead.querySelectorAll('.th-custom-col');
+  existingCustomTh.forEach(e => e.remove());
+  const actionsTh = thead.querySelector('.th-actions-col');
+  customColumns.forEach(col => {
+    const th = document.createElement('th');
+    th.className = 'th-custom-col';
+    th.style.minWidth = '110px';
+    th.innerHTML = `<div class="th-inner"><span>${col.name}</span><button class="del-col-btn" onclick="deleteColumn('${col.id}')" title="حذف العمود">✕</button></div>`;
+    thead.querySelector('tr').insertBefore(th, actionsTh);
+  });
+
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr class="empty-msg"><td colspan="${6 + customColumns.length}">📭 لا يوجد طلاب — اضغط "إضافة طالب" للبدء</td></tr>`;
+    updateStats();
+    return;
+  }
+
+  tbody.innerHTML = rows.map((s, i) => {
+    const attInfo = ATT_MAP[s.attendance] || ATT_MAP.present;
+    const evalInfo = EVAL_MAP[s.evaluation] || EVAL_MAP.good;
+    const feesInfo = FEES_MAP[s.fees] || FEES_MAP.unpaid;
+    const grpLabel = s.group === 'g1' ? 'المجموعة ١' : 'المجموعة ٢';
+    const grpCls = s.group;
+
+    const customCells = customColumns.map(col => {
+      const val = (s.customData && s.customData[col.id]) || '';
+      return `<td class="custom-cell"><input class="custom-cell-input" value="${escHtml(val)}" placeholder="—" onchange="updateCustom('${s.id}','${col.id}',this.value)" oninput="updateCustom('${s.id}','${col.id}',this.value)"></td>`;
+    }).join('');
+
+    return `<tr data-id="${s.id}">
+      <td class="row-num">${i+1}</td>
+      <td><input class="cell-name-input" value="${escHtml(s.name)}" onchange="updateField('${s.id}','name',this.value)" oninput="updateField('${s.id}','name',this.value)"></td>
+      <td><span class="grp-badge ${grpCls}">${grpLabel}</span></td>
+      <td>
+        <select class="csel ${attInfo.cls}" onchange="updateField('${s.id}','attendance',this.value);styleSelect(this,'att')">
+          <option value="present" ${s.attendance==='present'?'selected':''}>حاضر</option>
+          <option value="absent" ${s.attendance==='absent'?'selected':''}>غائب</option>
+          <option value="late" ${s.attendance==='late'?'selected':''}>متأخر</option>
+        </select>
+      </td>
+      <td>
+        <select class="csel ${evalInfo.cls}" onchange="updateField('${s.id}','evaluation',this.value);styleSelect(this,'ev')">
+          <option value="excellent" ${s.evaluation==='excellent'?'selected':''}>ممتاز</option>
+          <option value="verygood" ${s.evaluation==='verygood'?'selected':''}>جيد جداً</option>
+          <option value="good" ${s.evaluation==='good'?'selected':''}>جيد</option>
+          <option value="acceptable" ${s.evaluation==='acceptable'?'selected':''}>مقبول</option>
+          <option value="weak" ${s.evaluation==='weak'?'selected':''}>ضعيف</option>
+        </select>
+      </td>
+      <td>
+        <select class="csel ${feesInfo.cls}" onchange="updateField('${s.id}','fees',this.value);styleSelect(this,'fee')">
+          <option value="paid" ${s.fees==='paid'?'selected':''}>مدفوعة</option>
+          <option value="partial" ${s.fees==='partial'?'selected':''}>جزئياً</option>
+          <option value="unpaid" ${s.fees==='unpaid'?'selected':''}>غير مدفوعة</option>
+        </select>
+      </td>
+      ${customCells}
+      <td class="cell-actions th-actions-col">
+        <button class="del-btn" onclick="deleteStudent('${s.id}')" title="حذف الطالب">🗑</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  updateStats();
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function styleSelect(sel, prefix) {
+  const map = prefix === 'att' ? ATT_MAP : prefix === 'ev' ? EVAL_MAP : FEES_MAP;
+  const allCls = Object.values(map).map(m => m.cls);
+  allCls.forEach(c => sel.classList.remove(c));
+  const info = map[sel.value];
+  if (info) sel.classList.add(info.cls);
+}
+
+function updateField(id, field, value) {
+  const s = students.find(s => s.id === id);
+  if (s) { s[field] = value; saveData(); updateStats(); }
+}
+function updateCustom(id, colId, value) {
+  const s = students.find(s => s.id === id);
+  if (s) {
+    if (!s.customData) s.customData = {};
+    s.customData[colId] = value;
+    saveData();
+  }
+}
+
+function deleteStudent(id) {
+  if (!confirm('هل تريد حذف هذا الطالب؟')) return;
+  students = students.filter(s => s.id !== id);
+  saveData();
+  renderTable();
+}
+
+function setFilter(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+
+function openAddModal() {
+  document.getElementById('newName').value = '';
+  document.getElementById('addModal').classList.add('open');
+  setTimeout(() => document.getElementById('newName').focus(), 100);
+}
+function openColModal() {
+  document.getElementById('newColName').value = '';
+  document.getElementById('colModal').classList.add('open');
+  setTimeout(() => document.getElementById('newColName').focus(), 100);
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function addStudent() {
+  const name = document.getElementById('newName').value.trim();
+  if (!name) { document.getElementById('newName').focus(); return; }
+  const student = {
+    id: genId(),
+    name,
+    group: document.getElementById('newGroup').value,
+    attendance: document.getElementById('newAtt').value,
+    evaluation: document.getElementById('newEval').value,
+    fees: document.getElementById('newFees').value,
+    customData: {}
+  };
+  students.push(student);
+  saveData();
+  closeModal('addModal');
+  renderTable();
+}
+
+function addColumn() {
+  const name = document.getElementById('newColName').value.trim();
+  if (!name) { document.getElementById('newColName').focus(); return; }
+  customColumns.push({ id: 'col_' + Date.now(), name });
+  saveData();
+  closeModal('colModal');
+  renderTable();
+}
+
+function deleteColumn(colId) {
+  if (!confirm('هل تريد حذف هذا العمود وجميع بياناته؟')) return;
+  customColumns = customColumns.filter(c => c.id !== colId);
+  students.forEach(s => { if (s.customData) delete s.customData[colId]; });
+  saveData();
+  renderTable();
+}
+
+function exportCSV() {
+  const rows = getFiltered();
+  const headers = ['الرقم','اسم الطالب','المجموعة','الحضور','التقييم','الرسوم',...customColumns.map(c=>c.name)];
+  const attLbl = {present:'حاضر',absent:'غائب',late:'متأخر'};
+  const evalLbl = {excellent:'ممتاز',verygood:'جيد جداً',good:'جيد',acceptable:'مقبول',weak:'ضعيف'};
+  const feeLbl = {paid:'مدفوعة',partial:'جزئياً',unpaid:'غير مدفوعة'};
+  const grpLbl = {g1:'المجموعة الأولى',g2:'المجموعة الثانية'};
+  const lines = [headers.join(',')];
+  rows.forEach((s,i) => {
+    const cols = [
+      i+1,
+      `"${s.name}"`,
+      grpLbl[s.group]||s.group,
+      attLbl[s.attendance]||s.attendance,
+      evalLbl[s.evaluation]||s.evaluation,
+      feeLbl[s.fees]||s.fees,
+      ...customColumns.map(c => `"${(s.customData && s.customData[c.id])||''}"`)
+    ];
+    lines.push(cols.join(','));
+  });
+  const bom = '\uFEFF';
+  const blob = new Blob([bom + lines.join('\n')], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'students_' + new Date().toISOString().slice(0,10) + '.csv';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(ov => {
+  ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('open'); });
+});
+
+// Enter key in modals
+document.getElementById('newName').addEventListener('keydown', e => { if (e.key==='Enter') addStudent(); });
+document.getElementById('newColName').addEventListener('keydown', e => { if (e.key==='Enter') addColumn(); });
+
+// ===================== DARK MODE =====================
+const darkBtn = document.getElementById('darkToggle');
+darkBtn.addEventListener('click', () => {
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', dark ? '' : 'dark');
+  darkBtn.textContent = dark ? '🌙' : '☀️';
+  localStorage.setItem('eng_theme', dark ? 'light' : 'dark');
+});
+if (localStorage.getItem('eng_theme') === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  darkBtn.textContent = '☀️';
+}
+
+// ===================== NAV =====================
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'p-students') renderTable();
+}
+
+// ===================== INIT =====================
+loadData();
+// Fix: rebuild header action col class
+document.querySelector('#tableHead tr').lastElementChild.classList.add('th-actions-col');
+
+// Animate on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='none'; }
+  });
+}, {threshold:0.07});
+document.querySelectorAll('.lesson-card,.stat-card').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(14px)';
+  el.style.transition='opacity .35s ease,transform .35s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
