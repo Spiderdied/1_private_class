@@ -551,75 +551,155 @@ select.cs:focus{border-color:var(--p);}
 /* =========================================================
    CURRICULUM DATA
 ========================================================= */
-const DEFAULT_G1 = [
+// ==========================================
+// المجموعة الأولى (6 إلى 9 سنوات) - الصفر
+// ==========================================
+
+// 1. كورس التأسيس الصيفي (8 أسابيع - حصتين أسبوعياً)
+const SUMMER_G1 = [
   {week:1,lessons:[
-    {num:1,title:"الأبجدية — A to M",topic:"The Alphabet Part 1",objectives:["التعرف على الحروف A إلى M","نطق كل حرف بشكل صحيح","كتابة الحروف في الدفتر"],vocab:["A=Apple","B=Ball","C=Cat","D=Dog","E=Egg","F=Fish","G=Girl","H=Hat","I=Ice","J=Jam","K=Key","L=Lion","M=Monkey"],speaking:["ترديد الحروف جماعياً: A-B-C-D...","أغنية الأبجدية ABC Song","كل طالب يقول حرفاً بالترتيب"],reading:["قراءة الحروف من السبورة","تمييز الحروف الكبيرة والصغيرة: A/a, B/b"],writing:["رسم الحروف في الهواء","كتابة A,B,C,D,E في الدفتر"],homework:"اكتب الحروف من A إلى M ثلاث مرات",outcomes:["يعرف الحروف من A إلى M","ينطقها صحيحاً","يكتبها بوضوح"]},
-    {num:2,title:"الأبجدية — N to Z",topic:"The Alphabet Part 2",objectives:["إتمام الأبجدية من N إلى Z","تكرار A-Z كاملة","ربط كل حرف بكلمة"],vocab:["N=Nose","O=Orange","P=Pen","Q=Queen","R=Rain","S=Sun","T=Tree","U=Up","V=Van","W=Water","X=Box","Y=Yes","Z=Zoo"],speaking:["ترديد الأبجدية كاملة سريعاً وبطيئاً","لعبة: من يقول الحرف الذي يأتي بعده؟"],reading:["قراءة الأبجدية كاملة","تمييز الحرف المختلف بين ٣ حروف متشابهة"],writing:["كتابة الأبجدية كاملة في الدفتر","رسم شيء يبدأ بحرف معين"],homework:"اكتب الأبجدية كاملة مرتين وارسم صورة لـ 3 حروف",outcomes:["يعرف الأبجدية كاملة","يكتبها من الذاكرة","يربط كل حرف بكلمة"]}
+    {num:1,title:"حروف A-D",topic:"Alphabet 1",objectives:["التعرف على شكل وصوت A, B, C, D","ربط الحرف بصورة شفويًا"],vocab:["Apple (/æ/)","Ball","Cat","Dog"],speaking:["ترديد صوت الحرف الأمريكي الصحيح","لعبة السبورة: اضرب الحرف الصح"],reading:["قراءة الحروف الكبيرة من السبورة"],writing:["كتابة الحروف في الهواء","نسخ الحروف في الكراسة"],homework:"يوم الأحد: تلوين A,B - يوم الثلاثاء: كتابة C,D مرة واحدة",outcomes:["يميز أول 4 حروف صوتًا وشكلًا"]},
+    {num:2,title:"حروف E-H",topic:"Alphabet 2",objectives:["التعرف على E, F, G, H","التمييز بين الكابيتال والسمول"],vocab:["Egg","Fish","Girl","Hat"],speaking:["لعبة تجميع الحروف"],reading:["قراءة الحروف من السبورة"],writing:["نسخ E, F, G, H في الكراسة"],homework:"ارسم سمكة (Fish) وقبعة (Hat) واكتب الحرف جنبهم",outcomes:["ينطق ويكتب الحروف لغاية H"]}
   ]},
   {week:2,lessons:[
-    {num:3,title:"التحيات — Greetings",topic:"Hello & Goodbye",objectives:["تعلم التحيات اليومية","الإجابة على أسئلة الحال","استخدام التحيات بشكل طبيعي"],vocab:["Hello","Hi","Good morning","Good afternoon","Good evening","Goodbye","Bye","How are you?","I am fine","Thank you"],speaking:["حوار: Hello! How are you? — I am fine, thank you!","ممارسة مع الزميل المجاور"],reading:["قراءة بطاقات التحيات على السبورة","قراءة: Hello, my name is..."],writing:["كتابة: Hello! My name is ___.","كتابة ٣ تحيات في الدفتر"],homework:"حيّ ٣ أشخاص في بيتك بالإنجليزية",outcomes:["يحيي بالإنجليزية","يُجيب على كيف حالك","يودّع بشكل صحيح"]},
-    {num:4,title:"تقديم النفس — About Me",topic:"Personal Questions",objectives:["تعلم كيفية تقديم النفس","الإجابة على: ما اسمك؟ كم عمرك؟"],vocab:["name","age","year","class","live","school","student","teacher","boy","girl"],speaking:["What is your name? — My name is...","How old are you? — I am ___ years old."],reading:["قراءة جملة التعريف من السبورة"],writing:["كتابة: My name is ___, I am ___ years old, I am in class ___"],homework:"اكتب تعريفاً بنفسك في ٣ جمل",outcomes:["يُقدّم نفسه بالإنجليزية","يُجيب على الأسئلة الشخصية"]}
+    {num:3,title:"حروف I-L",topic:"Alphabet 3",objectives:["التعرف على I, J, K, L"],vocab:["Ice","Jam","Key","Lion"],speaking:["تقليد صوت الأسد مع حرف L"],reading:["قراءة الحروف من السبورة"],writing:["نسخ I, J, K, L في الكراسة"],homework:"يوم الإثنين: تلوين I,J - يوم الأربعاء: كتابة K,L",outcomes:["ينطق ويكتب الحروف لغاية L"]},
+    {num:4,title:"حروف M-P",topic:"Alphabet 4",objectives:["التعرف على M, N, O, P"],vocab:["Monkey","Nose","Orange","Pen"],speaking:["لعبة: شاور على مناخيرك (Nose)"],reading:["تمييز M عن N على السبورة"],writing:["نسخ M, N, O, P"],homework:"ارسم برتقالة وقلم واكتب حروفهم",outcomes:["يميز بين M و N"]}
   ]},
   {week:3,lessons:[
-    {num:5,title:"الأرقام ١-١٠ — Numbers",topic:"Counting 1-10",objectives:["العد من ١ إلى ١٠","كتابة الأرقام بالكلمات","استخدام الأرقام في جمل"],vocab:["one","two","three","four","five","six","seven","eight","nine","ten"],speaking:["العد الجماعي: One, two, three!","لعبة: أنا أفكر برقم — ما هو؟"],reading:["قراءة الأرقام بالكلمات","I have ___ books."],writing:["كتابة الأرقام ١-١٠ بالكلمات","I have ___ brothers."],homework:"اكتب الأرقام من one إلى ten مرتين",outcomes:["يعدّ من ١ إلى ١٠","يكتب الأرقام بالكلمات"]},
-    {num:6,title:"الأرقام ١١-٢٠ — More Numbers",topic:"Counting 11-20",objectives:["تعلم الأرقام من ١١ إلى ٢٠","العد الكامل ١-٢٠"],vocab:["eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"],speaking:["العد التصاعدي والتنازلي","لعبة: رمي الكرة والعد"],reading:["قراءة الأرقام من السبورة"],writing:["كتابة الأرقام ١١-٢٠ بالكلمات"],homework:"اكتب الأرقام من 1 إلى 20 بالأرقام وبالكلمات",outcomes:["يعدّ من ١ إلى ٢٠ بطلاقة"]}
+    {num:5,title:"حروف Q-T",topic:"Alphabet 5",objectives:["التعرف على Q, R, S, T"],vocab:["Queen","Rain","Sun","Tree"],speaking:["نطق R الأمريكية المفخمة"],reading:["قراءة Q-T"],writing:["نسخ الحروف في الكراسة"],homework:"تلوين شمس (Sun) وشجرة (Tree)",outcomes:["يتقن الـ 4 حروف الجداد"]},
+    {num:6,title:"حروف U-Z",topic:"Alphabet 6",objectives:["التعرف على U, V, W, X, Y, Z"],vocab:["Up","Van","Water","Box","Yes","Zoo"],speaking:["ترديد الحروف الأخيرة"],reading:["قراءة U-Z من السبورة"],writing:["نسخ الحروف الأخيرة"],homework:"وصل الحروف الكابيتال بالسمول في الكراسة",outcomes:["يكمل الأبجدية"]}
   ]},
   {week:4,lessons:[
-    {num:7,title:"الألوان — Colours",topic:"Colours of the World",objectives:["تعلم أسماء ١٠ ألوان","وصف الأشياء بالألوان"],vocab:["red","blue","green","yellow","black","white","orange","pink","purple","brown"],speaking:["What colour is this? — It is red.","مسابقة: من يُسمّي أكثر ألوان؟"],reading:["The sky is blue. The sun is yellow."],writing:["كتابة اسم اللون بجانب صورته"],homework:"ارسم ٥ أشياء واكتب اسم كل شيء ولونه",outcomes:["يُسمّي ١٠ ألوان","يصف الأشياء بلونها"]},
-    {num:8,title:"الأسرة — Family",topic:"My Family",objectives:["تعلم أفراد الأسرة","وصف الأسرة بجمل بسيطة","الضمائر he/she"],vocab:["father","mother","brother","sister","grandfather","grandmother","son","daughter","family","uncle","aunt"],speaking:["This is my father. He is tall.","Do you have a brother?"],reading:["قراءة جمل الأسرة من السبورة"],writing:["My family has ___ people. I have ___ brothers and ___ sisters."],homework:"ارسم أسرتك وسمّ كل شخص بالإنجليزية",outcomes:["يُسمّي أفراد أسرته","يصفهم بجمل بسيطة"]}
+    {num:7,title:"مراجعة الأبجدية 1",topic:"ABC Song",objectives:["غناء الأبجدية","تذكر الحروف عشوائيًا"],vocab:["A to Z"],speaking:["أغنية ABC","لعبة سرعة النينجا: مين يخبط على الحرف الأول"],reading:["قراءة حروف عشوائية"],writing:["إكمال الحروف الناقصة على السبورة"],homework:"يوم الأحد: تلوين الدودة الأبجدية - يوم الأربعاء: كتابة الحروف اللي واقع فيها",outcomes:["يغني الأبجدية"]},
+    {num:8,title:"مراجعة الأبجدية 2",topic:"Letters & Pictures",objectives:["ربط 26 حرف بالصور شفوياً"],vocab:["مراجعة الكلمات السابقة"],speaking:["مسابقة: الحرف ده بتاع إيه؟"],reading:["تمييز الحروف المتشابهة b/d, p/q"],writing:["كتابة الحرف الأول من الصورة"],homework:"ارسم 3 حاجات بتحبها واكتب أول حرف منها",outcomes:["يربط الحرف بكلمته"]}
   ]},
   {week:5,lessons:[
-    {num:9,title:"الحيوانات — Animals",topic:"Animals Around Us",objectives:["تعلم أسماء ١٠ حيوانات","وصف الحيوانات"],vocab:["cat","dog","cow","horse","sheep","chicken","lion","elephant","monkey","fish","bird","rabbit"],speaking:["I see a cat. It is small and white.","تقليد أصوات الحيوانات"],reading:["The lion is big. The rabbit is small."],writing:["The ___ is ___. It lives in ___"],homework:"ارسم ٥ حيوانات واكتب اسم كل منها",outcomes:["يُسمّي ١٠ حيوانات","يصفها بجملة بسيطة"]},
-    {num:10,title:"أدوات المدرسة — School Objects",topic:"In My Bag",objectives:["تعلم أدوات المدرسة","الجملة: I have a..."],vocab:["pen","pencil","book","bag","ruler","eraser","sharpener","notebook","desk","chair","board","chalk"],speaking:["I have a pen in my bag.","لعبة: ماذا في الحقيبة؟"],reading:["I use a pen to write."],writing:["I have a ___, a ___, and a ___ in my bag."],homework:"اكتب أسماء كل الأشياء في حقيبتك",outcomes:["يُسمّي أدوات المدرسة","يستخدم I have"]}
+    {num:9,title:"الأرقام 1-5",topic:"Numbers 1-5",objectives:["العد على الأصابع لـ 5","قراءة الأرقام شكلًا"],vocab:["1, 2, 3, 4, 5"],speaking:["العد الجماعي بصوت عالي"],reading:["قراءة الأرقام من السبورة"],writing:["كتابة الأرقام رياضيًا (بدون حروف)"],homework:"ارسم 3 تفاحات و 5 كور",outcomes:["يعد لـ 5"]},
+    {num:10,title:"الأرقام 6-10",topic:"Numbers 6-10",objectives:["العد لـ 10"],vocab:["6, 7, 8, 9, 10"],speaking:["لعبة: أنا خابي كام صباع؟"],reading:["قراءة الأرقام"],writing:["كتابة الأرقام 6-10"],homework:"عد الكراسات والأقلام في شنطتك واكتب الرقم",outcomes:["يعد لـ 10 بطلاقة"]}
   ]},
   {week:6,lessons:[
-    {num:11,title:"أعضاء الجسم — Body Parts",topic:"My Body",objectives:["تعلم أسماء أعضاء الجسم","لعبة Simon Says"],vocab:["head","eyes","ears","nose","mouth","teeth","neck","shoulders","hands","fingers","legs","feet"],speaking:["Touch your nose!","Simon says touch your ears!"],reading:["قراءة أسماء الأعضاء من رسم على السبورة"],writing:["رسم وجه وكتابة أسماء أعضائه"],homework:"ارسم جسمك واكتب أسماء ١٠ أعضاء",outcomes:["يُسمّي ١٠ أعضاء جسم","يستجيب لأوامر Simon Says"]},
-    {num:12,title:"الفواكه — Fruits",topic:"Yummy Fruits",objectives:["تعلم أسماء ١٠ فواكه","التعبير عن التفضيل"],vocab:["apple","banana","orange","mango","grapes","watermelon","strawberry","lemon","pear","dates"],speaking:["I like bananas. They are sweet.","ما فاكهتك المفضلة؟"],reading:["قراءة أسماء الفواكه وألوانها"],writing:["My favourite fruit is ___. It is ___ and ___."],homework:"اكتب أسماء ٥ فواكه مع لونها",outcomes:["يُسمّي ١٠ فواكه","يُعبّر عن تفضيله"]}
+    {num:11,title:"الألوان 1",topic:"Basic Colors",objectives:["التعرف على 4 ألوان أساسية"],vocab:["Red","Blue","Yellow","Green"],speaking:["شاور على لون في الفصل وقوله"],reading:["تمييز اللون شفويًا"],writing:["تلوين دوائر في الكراسة"],homework:"لون 4 دوائر بالألوان دي واكتب أول حرف من اللون",outcomes:["يعرف 4 ألوان"]},
+    {num:12,title:"الألوان 2",topic:"More Colors",objectives:["التعرف على 4 ألوان جديدة"],vocab:["Black","White","Orange","Pink"],speaking:["مسابقة تجميع ألوان من لبس الطلاب"],reading:["-"],writing:["-"],homework:"ارسم حاجة لونها برتقالي وحاجة لونها أسود",outcomes:["يعرف 8 ألوان"]}
   ]},
   {week:7,lessons:[
-    {num:13,title:"الـ Phonics والجمل البسيطة",topic:"Simple Sentences & Phonics",objectives:["قراءة كلمات CVC ثلاثية الحروف","تطبيق الـ Phonics الأساسي"],vocab:["cat/bat/hat","big/pig/dig","sun/run/fun","bed/red/fed","hot/pot/dot"],speaking:["قراءة الكلمات المتشابهة في الصوت","لعبة: ما الكلمة التي تختلف؟"],reading:["قراءة كلمات CVC من السبورة","The cat sat on a mat."],writing:["كتابة ٣ كلمات من نفس عائلة الصوت"],homework:"اكتب ٥ كلمات من عائلة -at مثل: cat, bat, hat",outcomes:["يقرأ كلمات CVC","يفهم أساس Phonics"]},
-    {num:14,title:"تقديم الذات الكامل — All About Me",topic:"Self Introduction",objectives:["تقديم نفس كاملة بجمل متصلة","التحدث بثقة أمام الفصل"],vocab:["My name is","I am","I live in","I like","My favourite","I have","I go to"],speaking:["كل طالب يقدم نفسه أمام الفصل في ٣-٤ جمل"],reading:["قراءة نموذج تقديمي مكتوب على السبورة"],writing:["كتابة فقرة تعريفية: اسم + عمر + أسرة + فاكهة مفضلة"],homework:"احفظ تعريفك واقدمه لأحد من أهلك",outcomes:["يُقدّم نفسه بجمل متعددة","يتحدث بثقة"]}
+    {num:13,title:"تحيات شفوي 1",topic:"Hello",objectives:["إلقاء التحية شفوياً"],vocab:["Hello","Hi","Goodbye"],speaking:["لعبة تمثيل الدور (Role-play)"],reading:["-"],writing:["-"],homework:"قول Hello و Goodbye لماما وبابا في البيت",outcomes:["يحيي الناس إنجليزي"]},
+    {num:14,title:"تحيات شفوي 2",topic:"My Name",objectives:["السؤال عن الاسم شفوياً"],vocab:["What is your name?","My name is..."],speaking:["كل طالب يسأل اللي جنبه عن اسمه"],reading:["-"],writing:["-"],homework:"اسأل 3 من صحابك عن اسمهم بالإنجليزي",outcomes:["يعرف نفسه شفوياً"]}
   ]},
   {week:8,lessons:[
-    {num:15,title:"مراجعة شاملة — General Review",topic:"Let's Remember Everything!",objectives:["مراجعة جميع مواضيع الأسابيع ١-٧","التحضير للاختبار النهائي"],vocab:["جميع المفردات السابقة"],speaking:["مسابقة المراجعة الكبرى بين المجموعات"],reading:["قراءة نص شامل يجمع مفردات متعددة"],writing:["كتابة فقرة كاملة: اسمي + أسرتي + ألواني + حيواني المفضل"],homework:"راجع جميع الكلمات استعداداً للاختبار",outcomes:["يتذكر جميع المفردات","يُطبق ما تعلمه"]},
-    {num:16,title:"الاختبار النهائي — Final Assessment",topic:"Show What You Know!",objectives:["تقييم جميع المهارات المكتسبة","قياس مستوى الطالب النهائي"],vocab:["جميع المفردات المدروسة"],speaking:["كل طالب يُجيب على ٣ أسئلة شفهية"],reading:["قراءة ١٠ كلمات أو جملة قصيرة"],writing:["كتابة ١٠ مفردات وجملة تعريفية"],homework:"لا واجب — أتممت البرنامج! 🎉",outcomes:["تحقيق نتائج البرنامج","الانتقال لمستوى أعلى"]}
-  ]}
-];
-const DEFAULT_G2 = [
-  {week:1,lessons:[
-    {num:1,title:"مراجعة الأبجدية والتحيات",topic:"Back to Basics",objectives:["مراجعة الأبجدية بسرعة","تعلم تحيات رسمية وغير رسمية","الحوار الكامل المتبادل"],vocab:["Good morning","Good afternoon","Nice to meet you","How do you do?","What's up?","See you later","Take care","You're welcome","Excuse me","I'm sorry"],speaking:["حوار كامل بين طالبين: مقدمة + تحية + وداع"],reading:["قراءة حوار قصير من السبورة"],writing:["كتابة حوار تحية كامل في الدفتر"],homework:"اكتب حواراً كاملاً بين شخصين يلتقيان للمرة الأولى",outcomes:["يُجري حواراً كاملاً","يستخدم تحيات متنوعة"]},
-    {num:2,title:"التعريف المفصّل — Who Am I?",topic:"Extended Introduction",objectives:["تقديم نفس مفصّل","الحديث عن الهوايات","استخدام I like / I love"],vocab:["hobby","favourite","like","love","enjoy","prefer","sport","music","reading","cooking","drawing","football"],speaking:["My name is ___, I am ___ years old, I like ___.","What do you like to do?"],reading:["قراءة فقرة تعريفية نموذجية"],writing:["كتابة فقرة تعريفية كاملة من ٥ جمل"],homework:"اكتب ٥ جمل عن نفسك وعن هواياتك",outcomes:["يكتب فقرة تعريفية","يتحدث عن هواياته"]}
-  ]},
-  {week:2,lessons:[
-    {num:3,title:"الأرقام والحياة اليومية",topic:"Numbers in Daily Life",objectives:["الأرقام حتى ١٠٠","الأرقام في السياقات اليومية"],vocab:["twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety","hundred","price","age","year","score"],speaking:["How old are you?","What is the price? — It is ___ riyals."],reading:["The book costs twenty riyals."],writing:["كتابة أرقام مختلفة بالكلمات في جمل"],homework:"اكتب عمر كل أفراد عائلتك بالإنجليزية",outcomes:["يعدّ حتى ١٠٠","يستخدم الأرقام في الحياة اليومية"]},
-    {num:4,title:"الألوان والأوصاف",topic:"Colours & Descriptions",objectives:["توسيع مفردات الألوان","الأوصاف: big/small, tall/short","الجملة الوصفية الكاملة"],vocab:["light blue","dark green","golden","silver","colourful","bright","tall","short","big","small","old","new","beautiful","ugly"],speaking:["Describe your friend.","The car is big, red, and old."],reading:["My house is big and white. It has green windows."],writing:["كتابة وصف لمكانك المفضل في ٣ جمل"],homework:"صِف غرفتك بالإنجليزية في ٣-٤ جمل",outcomes:["يصف الأشياء بتفصيل","يكتب جملاً وصفية"]}
-  ]},
-  {week:3,lessons:[
-    {num:5,title:"الأسرة الموسّعة — Family Tree",topic:"My Family",objectives:["تعلم أفراد الأسرة الموسعة","وصف الأشخاص","استخدام He is / She is"],vocab:["cousin","nephew","niece","aunt","uncle","husband","wife","parents","grandparents","relative","neighbour","friend"],speaking:["This is my uncle. He is a doctor.","How many people are in your family?"],reading:["My name is Sara. I have a big family..."],writing:["كتابة فقرة عن الأسرة"],homework:"اكتب ٥ جمل عن أفراد أسرتك مع وصف كل شخص",outcomes:["يُسمّي أفراد الأسرة الموسعة","يكتب فقرة عائلية"]},
-    {num:6,title:"الحيوانات ومواطنها",topic:"Where Do Animals Live?",objectives:["تعلم ٢٠ حيوان","وصف وتصنيف الحيوانات"],vocab:["domestic","wild","forest","desert","ocean","farm","pet","zoo","cage","prey","hunter","dangerous","safe"],speaking:["The lion is a wild animal. It lives in the forest."],reading:["The camel is a desert animal. It can live without water for a long time."],writing:["The ___ is a ___ animal. It lives in ___. It eats ___."],homework:"اختر حيواناً وصفه في ٤ جمل",outcomes:["يصنّف الحيوانات","يكتب فقرة وصفية"]}
-  ]},
-  {week:4,lessons:[
-    {num:7,title:"المدرسة والمواد الدراسية",topic:"My School Life",objectives:["مفردات المدرسة الموسعة","المواد الدراسية المختلفة"],vocab:["mathematics","science","Arabic","English","history","geography","art","PE","break","lesson","homework","exam","grade","classroom"],speaking:["My favourite subject is English because it is interesting."],reading:["On Monday, I have English, Maths, and Science."],writing:["My school has ___. I like ___ subject."],homework:"اكتب فقرة عن يوم دراسي عادي",outcomes:["يتحدث عن مدرسته","يُسمّي المواد الدراسية"]},
-    {num:8,title:"الجسم والصحة — Health",topic:"Stay Healthy!",objectives:["مفردات الصحة والمرض","التعبير عن الألم"],vocab:["headache","stomachache","cold","fever","tired","healthy","sick","doctor","medicine","hospital","rest","water","exercise","sleep"],speaking:["I have a headache. I need to rest.","What is wrong? — I have a fever."],reading:["To stay healthy, eat fruits, drink water, and sleep well."],writing:["Today I feel ___. I should ___ to feel better."],homework:"اكتب ٥ نصائح صحية بالإنجليزية",outcomes:["يُعبّر عن حالته الصحية","يكتب نصائح صحية"]}
-  ]},
-  {week:5,lessons:[
-    {num:9,title:"الطعام والمطعم — Food",topic:"Let's Eat!",objectives:["مفردات الطعام","الطلب في المطعم"],vocab:["rice","bread","meat","chicken","fish","salad","soup","juice","water","hungry","thirsty","delicious","spicy","sweet","menu","order"],speaking:["I am hungry. Can I have a sandwich please?","حوار بين نادل وزبون"],reading:["Sandwich - 5 riyals, Juice - 3 riyals"],writing:["I like to eat ___ for breakfast. My favourite food is ___."],homework:"اكتب وجباتك الثلاث اليوم بالإنجليزية",outcomes:["يُطلب الطعام بالإنجليزية","يُجري حوار المطعم"]},
-    {num:10,title:"الفواكه والخضروات",topic:"From the Garden",objectives:["٢٠ فاكهة وخضروات","التعبير عن التفضيل بالتفصيل"],vocab:["tomato","potato","onion","carrot","cucumber","lettuce","spinach","peas","corn","garlic","pepper","cabbage","mint","parsley"],speaking:["I prefer fruits to vegetables.","I like carrots because they are healthy."],reading:["Carrots are orange vegetables. They are good for your eyes."],writing:["My favourite vegetable is ___ because ___."],homework:"اكتب ٥ فواكه و٥ خضروات مع لون كل منها",outcomes:["يُسمّي ٢٠ فاكهة وخضروات"]}
-  ]},
-  {week:6,lessons:[
-    {num:11,title:"الأفعال اليومية — Daily Routines",topic:"My Day",objectives:["أفعال الحياة اليومية","وصف الروتين اليومي"],vocab:["wake up","brush teeth","wash face","eat breakfast","go to school","study","play","pray","watch","read","sleep","help","cook","clean"],speaking:["I wake up at 6 AM. I brush my teeth and wash my face."],reading:["Ahmad wakes up at 6. He eats breakfast and goes to school."],writing:["كتابة فقرة روتيني اليومي من ٥ جمل"],homework:"اكتب روتينك اليومي الكامل",outcomes:["يصف روتينه اليومي","يكتب فقرة زمنية"]},
-    {num:12,title:"الأماكن في المدينة — Places",topic:"Around Town",objectives:["أسماء الأماكن في المدينة","طلب الاتجاهات"],vocab:["school","market","mosque","hospital","park","library","bakery","supermarket","police station","fire station","bank","pharmacy","restaurant","post office"],speaking:["Where is the hospital? — Go straight and turn right.","Excuse me, where is the mosque?"],reading:["Our town has a big market, a hospital, and a beautiful park."],writing:["In my town, there is ___. My favourite place is ___ because ___."],homework:"اكتب ٥ أماكن وما تفعله في كل مكان",outcomes:["يُسمّي أماكن المدينة","يطلب الاتجاهات"]}
-  ]},
-  {week:7,lessons:[
-    {num:13,title:"مهارات القراءة — Reading Skills",topic:"Reading for Understanding",objectives:["قراءة فقرة وفهم محتواها","الإجابة على أسئلة الفهم"],vocab:["paragraph","sentence","meaning","understand","answer","question","topic","main idea","detail","character"],speaking:["ما الفكرة الرئيسية؟","Who is the main character?"],reading:["قراءة فقرة كاملة والإجابة على ٣ أسئلة: Who? What? Where?"],writing:["كتابة إجابات الفهم في جمل كاملة"],homework:"اقرأ الفقرة ٣ مرات وأجب عن الأسئلة",outcomes:["يقرأ ويفهم فقرة","يُجيب على أسئلة الفهم"]},
-    {num:14,title:"الـ Phonics المتوسط",topic:"Intermediate Phonics",objectives:["أصوات الحروف المركبة: sh, ch, th","قراءة كلمات CVCC"],vocab:["ship/shop/show","chat/chin/chess","this/that/them/think","black/block/blank","frog/from/frost"],speaking:["قراءة كل مجموعة صوتية بصوت عالٍ"],reading:["The ship is in the shop."],writing:["كتابة ٣ كلمات لكل نمط صوتي"],homework:"اكتب ٥ كلمات تبدأ بـ sh و٥ كلمات تبدأ بـ ch",outcomes:["ينطق الأصوات المركبة","يقرأ كلمات CVCC"]}
-  ]},
-  {week:8,lessons:[
-    {num:15,title:"مراجعة شاملة وحوار حر",topic:"Final Review",objectives:["مراجعة كل المواضيع","التحضير للاختبار"],vocab:["جميع مفردات البرنامج"],speaking:["حوار حر بين الطلاب"],reading:["قراءة نص شامل يجمع مواضيع متعددة"],writing:["كتابة فقرتين: عن نفسك + عن مكانك المفضل"],homework:"راجع كل المفردات استعداداً للاختبار",outcomes:["يُطبق جميع ما تعلمه","يكتب بثقة"]},
-    {num:16,title:"الاختبار النهائي الشامل",topic:"Final Assessment",objectives:["تقييم جميع المهارات","قياس التقدم"],vocab:["جميع مفردات البرنامج"],speaking:["تقديم نفس + وصف الأسرة + الروتين اليومي"],reading:["قراءة فقرة والإجابة على أسئلة فهم"],writing:["كتابة فقرتين مترابطتين"],homework:"لا واجب — أكملت البرنامج! 🎓",outcomes:["إظهار جميع مهارات البرنامج","الاستعداد للمستوى التالي"]}
+    {num:15,title:"مراجعة كبرى",topic:"Big Review",objectives:["تثبيت الحروف والأرقام والألوان"],vocab:["مراجعة عامة"],speaking:["بطولة الشطرنج الإنجليزية: فرق بتجاوب أسئلة سريعة"],reading:["قراءة شاملة من السبورة"],writing:["إملاء خفيف لبعض الحروف"],homework:"راجع كراستك كلها",outcomes:["جاهز لاختبار التأسيس"]},
+    {num:16,title:"اختبار التأسيس",topic:"Final Games",objectives:["تقييم بدون ضغط"],vocab:["-"],speaking:["تسميع شفوي خفيف"],reading:["توصيل على السبورة"],writing:["إملاء حروف عشوائية"],homework:"مفيش واجب.. إنت بطل!",outcomes:["إنهاء التأسيس بنجاح"]}
   ]}
 ];
 
+// 2. خطة الدراسة أثناء المدارس للمجموعة الأولى (24 أسبوع - حصة واحدة أسبوعياً)
+// القاعدة: 30% مراجعة السبورة + 70% فونتكس وكلمات
+const SCHOOL_G1 = [
+  // الشهر الأول (Phonics CVC)
+  {week:1,lesson:{topic:"Short A",vocab:["Cat, Bat, Hat, Mat"],structure:"I see a cat.",homework:"اكتب الكلمات مرتين، اقرأهم لماما"}},
+  {week:2,lesson:{topic:"Short E",vocab:["Bed, Red, Pen, Ten"],structure:"It is red.",homework:"يوم الأحد: تلوين - الأربعاء: كتابة"}},
+  {week:3,lesson:{topic:"Short I & O",vocab:["Pig, Big, Dog, Hot"],structure:"The dog is big.",homework:"ارسم كلب كبير واكتب جملة الكلب"}},
+  {week:4,lesson:{topic:"Short U + Body Parts",vocab:["Sun, Run, Eye, Ear"],structure:"This is my ear.",homework:"شاور على عينك وودنك قدام المراية بالانجليزي"}},
+  // الشهر الثاني (مجموعات الكلمات البسيطة)
+  {week:5,lesson:{topic:"Animals",vocab:["Lion, Monkey, Cow, Sheep"],structure:"I like the lion.",homework:"ارسم حيوانك المفضل"}},
+  {week:6,lesson:{topic:"Fruits",vocab:["Apple, Banana, Mango, Orange"],structure:"I eat an apple.",homework:"يوم السبت: كتابة - الثلاثاء: ارسم فاكهة"}},
+  {week:7,lesson:{topic:"Food",vocab:["Fish, Meat, Rice, Bread"],structure:"I want fish.",homework:"قول I want وقت الغدا"}},
+  {week:8,lesson:{topic:"School Items",vocab:["Book, Pen, Bag, Desk"],structure:"I have a bag.",homework:"طلع أدواتك من الشنطة وسميها"}},
+  // الشهر الثالث (الأفعال والأسرة)
+  {week:9,lesson:{topic:"Family",vocab:["Dad, Mom, Brother, Sister"],structure:"He is my dad. She is my mom.",homework:"ارسم عيلتك"}},
+  {week:10,lesson:{topic:"Verbs 1",vocab:["Play, Run, Jump, Sleep"],structure:"I can jump.",homework:"نط والعب وقول الكلمة"}},
+  {week:11,lesson:{topic:"Verbs 2",vocab:["Eat, Drink, Read, Write"],structure:"I read a book.",homework:"اكتب الكلمات ومثلها لأهلك"}},
+  {week:12,lesson:{topic:"Feelings",vocab:["Happy, Sad, Angry, Tired"],structure:"I am happy.",homework:"ارسم وش بيضحك ووش زعلان واكتب الكلمة"}},
+  // الشهر الرابع (البيت والأماكن)
+  {week:13,lesson:{topic:"Rooms",vocab:["Bedroom, Kitchen, Bathroom"],structure:"I am in the kitchen.",homework:"روح المطبخ وقول أنا فين"}},
+  {week:14,lesson:{topic:"House objects",vocab:["Bed, TV, Door, Window"],structure:"Open the door.",homework:"افتح الباب وقول الجملة"}},
+  {week:15,lesson:{topic:"Places",vocab:["Park, Zoo, School, Shop"],structure:"Let's go to the zoo.",homework:"كتابة الكلمات مرتين"}},
+  {week:16,lesson:{topic:"Transport",vocab:["Car, Bus, Train, Bike"],structure:"I go by bus.",homework:"ارسم عربية وباص"}},
+  // الشهر الخامس (الصفات والطبيعة)
+  {week:17,lesson:{topic:"Adjectives",vocab:["Tall, Short, Big, Small"],structure:"The tree is tall.",homework:"وصف حاجات في البيت"}},
+  {week:18,lesson:{topic:"Weather",vocab:["Sunny, Rainy, Windy, Hot"],structure:"It is sunny today.",homework:"بص من الشباك وقول الجو إيه"}},
+  {week:19,lesson:{topic:"Nature",vocab:["Tree, Flower, Star, Moon"],structure:"Look at the moon.",homework:"ارسم قمر ونجوم"}},
+  {week:20,lesson:{topic:"Clothes",vocab:["Shirt, Pants, Shoes, Hat"],structure:"I wear a shirt.",homework:"أنت لابس إيه النهاردة؟"}},
+  // الشهر السادس (مراجعات وتكوين جمل من 3 كلمات)
+  {week:21,lesson:{topic:"Prepositions",vocab:["In, On, Under"],structure:"The cat is on the mat.",homework:"حط القلم فوق الكتاب وقول الجملة"}},
+  {week:22,lesson:{topic:"Review 1 (CVC + Verbs)",vocab:["مراجعة قراءة"],structure:"I can run.",homework:"قراءة 5 كلمات"}},
+  {week:23,lesson:{topic:"Review 2 (Vocab + Family)",vocab:["مراجعة شاملة"],structure:"This is my dad.",homework:"مراجعة شفوية"}},
+  {week:24,lesson:{topic:"Mini Project",vocab:["كل المنهج"],structure:"My name is.. I like..",homework:"إجازة سعيدة!"}}
+];
+
+// ==========================================
+// المجموعة الثانية (10 إلى 12 سنة) - المنهج المعدل
+// ==========================================
+
+// 1. التأسيس الصيفي (8 أسابيع - حصتين أسبوعياً) - معدل ليكون أسرع وأكثر نضجاً
+const SUMMER_G2 = [
+  {week:1,lessons:[
+    {num:1,title:"مراجعة الأبجدية كاملة",topic:"A-Z Fast Track",objectives:["التأكد من إتقان كتابة ونطق الحروف","التركيز على نطق الأصوات المتحركة (Vowels)"],vocab:["A to Z"],speaking:["قراءة الحروف بسرعة","توضيح الفرق بين p و b"],reading:["تمييز الكلمات المتشابهة"],writing:["كتابة فقرة صغيرة للتدريب على خط اليد"],homework:"كتابة كلمات بتبدأ بكل حرف من حروف اسمك",outcomes:["استرجاع الحروف بقوة"]},
+    {num:2,title:"التحيات والتعريف",topic:"Greetings & Intro",objectives:["عمل حوار كامل","استخدام My/Your"],vocab:["Hello, How are you?","Nice to meet you"],speaking:["حوار ثنائي بين الطلاب"],reading:["قراءة حوار من السبورة"],writing:["كتابة حوار قصير في الكراسة"],homework:"اكتب حوار بينك وبين صديق جديد",outcomes:["يُجري محادثة تعارف"]}
+  ]},
+  {week:2,lessons:[
+    {num:3,title:"الأرقام 1-100",topic:"Numbers 1-100",objectives:["نطق الأرقام المركبة (21, 35)"],vocab:["Twenty, Thirty, Hundred"],speaking:["لعبة الأرقام السريعة"],reading:["قراءة الأرقام كعمر أو سعر"],writing:["كتابة أرقام عشوائية بالكلمات"],homework:"اكتب عمر 5 أشخاص في عيلتك",outcomes:["يعد ويقرأ الأرقام لـ 100"]},
+    {num:4,title:"الألوان والأوصاف",topic:"Adjectives",objectives:["وصف الأشياء (حجم + لون)"],vocab:["Big, Small, Tall, Short, Red, Blue"],speaking:["وصف أشياء في الفصل"],reading:["The big car is red."],writing:["كتابة 3 جمل وصفية"],homework:"صِف غرفتك في 3 جمل",outcomes:["يُركب جملة وصفية صحيحة"]}
+  ]},
+  {week:3,lessons:[
+    {num:5,title:"العائلة والضمائر",topic:"Family & Pronouns",objectives:["أسماء العائلة","ضمائر الفاعل He/She/They"],vocab:["Uncle, Aunt, Cousin, Parents"],speaking:["This is my uncle. He is tall."],reading:["قراءة فقرة عن عائلة"],writing:["كتابة شجرة العائلة"],homework:"اكتب 4 جمل عن أسرتك",outcomes:["يتحدث عن عائلته"]},
+    {num:6,title:"أدوات التكنولوجيا والمدرسة",topic:"School & Tech",objectives:["استخدام I have / I use"],vocab:["Smartphones, Laptop, Bag, Notebook, Board"],speaking:["لعبة الذاكرة: أنا معايا إيه في الشنطة؟"],reading:["I use smartphones for learning."],writing:["كتابة 3 أشياء تمتلكها"],homework:"اكتب 3 حاجات في شنطتك و3 أجهزة في بيتك",outcomes:["يسمي الأشياء المحيطة به"]}
+  ]},
+  {week:4,lessons:[
+    {num:7,title:"الحيوانات",topic:"Animals",objectives:["وصف الحيوانات وقدراتها (Can/Can't)"],vocab:["Lion, Elephant, Bird, Fish"],speaking:["The bird can fly. The fish can swim."],reading:["قراءة حقائق عن الحيوانات"],writing:["كتابة جمل بـ Can"],homework:"ارسم حيوان واكتب هو يقدر يعمل إيه",outcomes:["يستخدم Can بطلاقة"]},
+    {num:8,title:"أعضاء الجسم",topic:"Body Parts",objectives:["أسماء الأعضاء","I have two eyes"],vocab:["Head, Shoulders, Knees, Toes"],speaking:["Simon says للمتقدمين"],reading:["قراءة وصف شخص"],writing:["كتابة وصف لشخصية خيالية"],homework:"وصف شكل شخصية كرتونية بتحبها",outcomes:["يصف الملامح الجسدية"]}
+  ]},
+  {week:5,lessons:[
+    {num:9,title:"الطعام والشراب",topic:"Food & Drinks",objectives:["التعبير عن التفضيل I like / I don't like"],vocab:["Chicken, Rice, Juice, Water"],speaking:["What do you like to eat?"],reading:["قائمة مطعم Menu"],writing:["تصميم منيو مطعم صغير"],homework:"اكتب وجباتك المفضلة",outcomes:["يُعبر عن ذوقه في الأكل"]},
+    {num:10,title:"الفواكه والخضار",topic:"Healthy Food",objectives:["التفرقة بين المفرد والجمع"],vocab:["Apple/Apples, Potato/Potatoes"],speaking:["I like bananas but I don't like onions."],reading:["قراءة نص عن الأكل الصحي"],writing:["كتابة الجمل منفية ومثبتة"],homework:"اكتب 3 فواكه و3 خضروات بتحبهم",outcomes:["يستخدم النفي والإثبات"]}
+  ]},
+  {week:6,lessons:[
+    {num:11,title:"الأفعال اليومية 1",topic:"Daily Routine",objectives:["أفعال المضارع البسيط (I wake up)"],vocab:["Wake up, Wash, Eat, Go"],speaking:["سرد الروتين اليومي"],reading:["قراءة روتين شخص"],writing:["كتابة 4 أفعال بتعملهم كل يوم"],homework:"اكتب بتعمل إيه الصبح",outcomes:["يتحدث عن يومه"]},
+    {num:12,title:"الأماكن والاتجاهات",topic:"City Places",objectives:["أسماء الأماكن وحروف الجر"],vocab:["School, Hospital, Mosque, Next to, Behind"],speaking:["Where is the school?"],reading:["خريطة بسيطة على السبورة"],writing:["كتابة مسار من البيت للمدرسة"],homework:"اكتب 3 أماكن جمب بيتك",outcomes:["يصف الاتجاهات"]}
+  ]},
+  {week:7,lessons:[
+    {num:13,title:"أساسيات الفونتكس للصغار المتقدمين",topic:"Consonant Blends",objectives:["قراءة الكلمات اللي بتبدأ بحرفين ساكنين"],vocab:["Black, Stop, Tree, Play"],speaking:["التدريب على نطق Blends"],reading:["قراءة جمل كاملة وسريعة"],writing:["إملاء كلمات"],homework:"ابحث عن 5 كلمات بتبدأ بـ St",outcomes:["يقرأ كلمات معقدة قليلًا"]},
+    {num:14,title:"التعريف الشامل بالنفس",topic:"All About Me",objectives:["دمج كل ما سبق في فقرة واحدة"],vocab:["دمج المنهج"],speaking:["وقوف الطالب لتقديم نفسه كاملًا أمام الفصل"],reading:["قراءة نموذج ممتاز"],writing:["كتابة فقرة من 5 جمل"],homework:"تدرب على تقديم نفسك قدام المراية",outcomes:["يتحدث بثقة لـ 30 ثانية"]}
+  ]},
+  {week:8,lessons:[
+    {num:15,title:"مراجعة شاملة",topic:"General Review",objectives:["حل تدريبات على السبورة"],vocab:["-"],speaking:["مسابقات بين المجموعات"],reading:["-"],writing:["-"],homework:"استعد للاختبار",outcomes:["مراجعة تامة"]},
+    {num:16,title:"الاختبار النهائي",topic:"Final Assessment",objectives:["قياس القراءة والكتابة والمحادثة"],vocab:["-"],speaking:["محادثة مع المدرس"],reading:["قراءة فقرة قصيرة"],writing:["كتابة فقرة عن النفس"],homework:"-",outcomes:["إنهاء المستوى الصيفي"]}
+  ]}
+];
+
+// 2. خطة الدراسة أثناء المدارس للمجموعة الثانية (24 أسبوع - حصة واحدة أسبوعياً)
+// التركيز على القواعد الأساسية، بناء الجمل، والقراءة
+const SCHOOL_G2 = [
+  // الشهر الأول (Present Simple Basics)
+  {week:1,lesson:{topic:"Pronouns & Verb To Be",grammar:"am, is, are",vocab:["Doctor, Student, Happy"],homework:"اكتب 3 جمل بـ am, is, are"}},
+  {week:2,lesson:{topic:"Present Simple (I, You, We, They)",grammar:"Verb without 's'",vocab:["Play, Like, Go"],homework:"اكتب 3 حاجات بتعملوها في البيت"}},
+  {week:3,lesson:{topic:"Present Simple (He, She, It)",grammar:"Verb + s/es",vocab:["Watches, Plays, Goes"],homework:"اكتب أخوك أو صاحبك بيعمل إيه"}},
+  {week:4,lesson:{topic:"Telling Time",grammar:"It is...",vocab:["O'clock, Half past"],homework:"ارسم 3 ساعات واكتب الوقت"}},
+  // الشهر الثاني (Present Continuous)
+  {week:5,lesson:{topic:"Present Continuous 1",grammar:"am/is/are + ing",vocab:["Playing, Reading"],homework:"أنت بتعمل إيه دلوقتي؟ اكتب جملة"}},
+  {week:6,lesson:{topic:"Present Continuous 2 (Questions)",grammar:"Are you...? Is he...?",vocab:["Eating, Sleeping"],homework:"اكتب سؤالين واسألهم لصحابك"}},
+  {week:7,lesson:{topic:"Clothes & Shopping",grammar:"How much is this?",vocab:["T-shirt, Jacket, Shoes, Price"],homework:"اكتب أسعار 3 قطع لبس عندك"}},
+  {week:8,lesson:{topic:"Weather & Seasons",grammar:"It is hot in Summer",vocab:["Summer, Winter, Spring, Autumn"],homework:"إيه الفصل المفضل ليك وليه؟"}},
+  // الشهر الثالث (Past Simple)
+  {week:9,lesson:{topic:"Verb To Be (Past)",grammar:"Was / Were",vocab:["Yesterday, Last week"],homework:"كنت فين امبارح؟ اكتب جملة"}},
+  {week:10,lesson:{topic:"Past Simple (Regular)",grammar:"Verb + ed",vocab:["Played, Watched, Cleaned"],homework:"اكتب 3 أفعال عملتهم في الويك إند"}},
+  {week:11,lesson:{topic:"Past Simple (Irregular 1)",grammar:"Went, Saw, Ate",vocab:["Go/Went, See/Saw, Eat/Ate"],homework:"اكتب جملة بـ went وجملة بـ ate"}},
+  {week:12,lesson:{topic:"Town & Directions",grammar:"Imperatives (Go straight, Turn right)",vocab:["Street, Corner, Traffic light"],homework:"ارسم خريطة من بيتك للجامع/المدرسة"}},
+  // الشهر الرابع (Nouns & Quantifiers)
+  {week:13,lesson:{topic:"Countable & Uncountable",grammar:"a/an, some",vocab:["Water, Rice, Apples, Books"],homework:"صنف الكلمات دي لبيتعد ومابيتعدش"}},
+  {week:14,lesson:{topic:"Much & Many",grammar:"How much / How many",vocab:["Money, Friends, Time"],homework:"اسأل سؤال بـ How many وسؤال بـ How much"}},
+  {week:15,lesson:{topic:"Health & Illness",grammar:"I have a / You should",vocab:["Headache, Cold, Doctor, Medicine"],homework:"لو صاحبك عيان هتقوله إيه؟ (You should...)"}},
+  {week:16,lesson:{topic:"Reading Comprehension 1",grammar:"Review",vocab:["قصة قصيرة على السبورة"],homework:"اقرأ القطعة اللي نقلتها في كراستك واستخرج الأفعال"}},
+  // الشهر الخامس (Future)
+  {week:17,lesson:{topic:"Future with 'Going to'",grammar:"am/is/are + going to",vocab:["Tomorrow, Next month"],homework:"ناوي تعمل إيه بكرة؟"}},
+  {week:18,lesson:{topic:"Future with 'Will'",grammar:"Will + infinitive",vocab:["I will help you, I think it will rain"],homework:"اكتب تتوقع إيه يحصل في الماتش الجاي"}},
+  {week:19,lesson:{topic:"Jobs & Workplaces",grammar:"Where does he work?",vocab:["Teacher/School, Doctor/Hospital, Developer/Office"],homework:"عايز تطلع إيه لما تكبر وليه؟"}},
+  {week:20,lesson:{topic:"Hobbies & Sports",grammar:"Play/Do/Go + Sport",vocab:["Play chess, Go swimming, Do karate"],homework:"إيه الرياضة اللي بتلعبها؟"}},
+  // الشهر السادس (Comparisons & Reviews)
+  {week:21,lesson:{topic:"Comparatives",grammar:"adj + er + than",vocab:["Faster, Taller, Bigger"],homework:"قارن بين أسد وفيل"}},
+  {week:22,lesson:{topic:"Superlatives",grammar:"the + adj + est",vocab:["The fastest, The tallest"],homework:"مين أطول واحد في عيلتك؟"}},
+  {week:23,lesson:{topic:"General Grammar Review",grammar:"Mix Tenses",vocab:["لعبة تصحيح الأخطاء على السبورة"],homework:"راجع قواعد الترم"}},
+  {week:24,lesson:{topic:"Final Test / Project",grammar:"All",vocab:["All"],homework:"إجازة نص السنة! 🎉"}}
+];
 /* =========================================================
    INDEXEDDB
 ========================================================= */
